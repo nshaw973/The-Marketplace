@@ -9,7 +9,7 @@ const sequelize = require('./config/connection')
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 //Express
-app = express();
+const app = express();
 //Port for heroku, and localhost
 PORT = process.env.PORT || 3001;
 
@@ -43,7 +43,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //routes found in controllers
 app.use(routes);
-
+// image
+app.use(express.static("images"));
 //listens
 sequelize.sync({ force: false }).then(() => {
     app.listen(PORT, () => console.log(`Now listening on http://localhost:${PORT}/`));
