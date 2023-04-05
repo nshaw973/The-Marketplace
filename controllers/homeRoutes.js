@@ -47,4 +47,13 @@ router.get('/carts', async (req, res) => {
         res.status(500)
     }
 });
+
+/* Test Route for account dashboard */
+ router.get('/account', async (req, res) => {
+    try {
+        res.render('account');
+    } catch(err) {
+        res.status(500);
+    }
+ })
 module.exports = router
