@@ -38,11 +38,25 @@
                 <h2 class="font-serif text-5xl text-gray-dark mb-4">blahhhblahsh</h2>
                 <p class="uppercase tracking-wide">branding branding</p>
                 <p class="uppercase  tracking-wide">text</p>
+                
                 <a href="#" class="bg-gradient-to-r from-orange to-purple rounded-full py-4 px-8 text-gray uppercase text-xl self-start">shop</a>
             </div>
             <div class = 'w-3/5'>
                 <img src="/images/hero3.jpg" class="w-full">
             </div>
         </div>
-   
+   {{!-- sections for cards to display items --}}
+   <div class="d-inline p-5">
+    <div class="card" style="width: 18rem;">
+  <img src="..." class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Product name</h5>
+    <p class="card-text">Description: blahshh.</p>
+    <form action="/create-checkout-session" method="POST">
+        <button type="submit" id="checkout-button" class ="bg-yellow border border-yellow text-white px-8 rounded-r-md hover:bg-transparent hover:text-yellow transition">Checkout</button>
+      </form>
+</div>
+   </div>
+
+   </div>
     </header>
