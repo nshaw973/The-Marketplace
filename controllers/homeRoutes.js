@@ -64,36 +64,6 @@ router.get('/carts', async (req, res) => {
 });
 
 
-// for checkout route
-
-
-// router.post("/create-checkout-session", async(req,res)=>{
-//     try {
-//         const session= await stripe.checkout.sessions.create({
-//             payment_method_types:['card'],
-//             mode: 'payment',
-//             line_items:req.body.items.map(item=>{
-//                 const storeItem = storeItems.get(item.id);
-//                 return{
-//                     price_data:{
-//                         currency:'usd',
-//                         product_data:{
-//                             name: storeItem.name,
-//                         },
-//                         unit_amount:storeItem.priceInCents
-//                     },
-//                     quantity:item.quantity
-//                 }
-//             }),
-//             success_url:`${process.env.SERVER_URL}/success.html`,
-//             cancel_utl:`${process.env.SERVER_URL}/cancel.html`
-//         })
-//         res.redirect(session.url);
-//         res.json({url:session.url});
-//     } catch (err) {
-//         console.log(err);
-//     }
-// })
 router.post('/create-checkout-session/:id', async (req, res) => {
 
 //     const items = await Product.findAll({where:{id:req.params.id}});
@@ -146,5 +116,15 @@ router.post('/create-checkout-session/:id', async (req, res) => {
     }
 });
 // product page
+
+=======
+/* Test Route for account dashboard */
+ router.get('/account', async (req, res) => {
+    try {
+        res.render('account');
+    } catch(err) {
+        res.status(500);
+    }
+ })
 
 module.exports = router
