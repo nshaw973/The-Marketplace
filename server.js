@@ -7,8 +7,14 @@ const exphbs = require('express-handlebars');
 const routes = require('./controllers');
 const sequelize = require('./config/connection')
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
+const stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY);
 
-//Express
+
+// cores for payment processing
+const cors = require('cors');
+
+
+
 const app = express();
 //Port for heroku, and localhost
 PORT = process.env.PORT || 3001;
@@ -32,6 +38,17 @@ const sess = {
 };
 
 app.use(session(sess));
+app.use(
+  cors({
+    origin: 'http://localhost:3001'
+  })
+)
+
+
+// stripeeee
+
+
+
 
 //Using Handlebars.js
 app.engine('handlebars', hbs.engine);
@@ -44,7 +61,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //routes found in controllers
 app.use(routes);
 // image
-app.use(express.static("images"));
+
 //listens
 sequelize.sync({ force: false }).then(() => {
     app.listen(PORT, () => console.log(`Now listening on http://localhost:${PORT}/`));

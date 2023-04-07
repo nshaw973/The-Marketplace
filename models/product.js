@@ -16,6 +16,10 @@ Product.init(
             type: DataTypes.STRING(40),
             allowNull: false
         },
+        img:{
+            type:DataTypes.STRING(200),
+            allowNull:true
+        },
         description: {
             type: DataTypes.STRING,
             allowNull: false,      
