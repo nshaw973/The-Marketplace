@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const {User,Product,Cart} = require('../models');
+
 // const stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY);
 const stripe = require('stripe')('sk_test_51MtMgCFsxalzdvcdc5tDP213h3qLVySCf3NesuAkpDIg81LwfRrIIRlcbIZhQCEqXn5GayrtWOSv4rPpOKcQ75pu00dDxC09LW');
 //Express
@@ -10,6 +11,9 @@ const user = [
 ]
 router.get('/', async (req, res) => {
     try {
+        const script = {
+            "script": "./js/index.js",
+        };
         const productData = await Product.findAll();
         console.log(productData);
         const products = productData.map((products)=>{
@@ -17,7 +21,7 @@ router.get('/', async (req, res) => {
         });
         console.log(products);
         res.render('homepage',{
-            products
+            ...products,...script
         });
     } catch(err) {
         res.status(500)
@@ -58,6 +62,25 @@ router.post('/signup', async (req, res) => {
 router.get('/carts', async (req, res) => {
     try {
         res.render('carts');
+    } catch(err) {
+        res.status(500)
+    }
+});
+
+//route for search. When client sends url ./search with query parameters ?term=* &category=* &brand &id=*
+//client side js creates the complete url and fetches. Server decodes query and returns data from database
+//then server updates the search html to reflect the search results
+router.get('/search', async (req, res) => {
+    try {
+        // const queryParameters = req.query;
+        // const data = pollDatabase(queryParameters);
+        const data = await pollDummyDatabase(req.query.term);
+        
+        // res.send(data)
+        res.render('search',{
+            "script": "./js/search.js",
+            "searchResults": JSON.stringify(data)
+        });
     } catch(err) {
         res.status(500)
     }
@@ -117,7 +140,6 @@ router.post('/create-checkout-session/:id', async (req, res) => {
 });
 // product page
 
-=======
 /* Test Route for account dashboard */
  router.get('/account', async (req, res) => {
     try {
@@ -127,4 +149,11 @@ router.post('/create-checkout-session/:id', async (req, res) => {
     }
  })
 
+
+ async function pollDummyDatabase(query){
+    console.log(`polling data using query: ${query}`);
+    const response = await fetch(`https://dummyjson.com/products/search?q=${query}`)
+    const data = await response.json()
+    return data;
+}
 module.exports = router
