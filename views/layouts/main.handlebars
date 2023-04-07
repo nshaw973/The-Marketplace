@@ -7,16 +7,47 @@
     <title>Group 3 Marketplace!!!</title>
     {{!-- Reset file to reset browser custom styling --}}
     {{!-- tailwind --}}
-    
+
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/style.css">
-   
 </head>
+<header class = "py-4 shadow-sm bg-gray">
+        {{!-- Marketplace Banner --}} 
+        <div class="container flex items-center justify-between">
+
+            {{!-- logo --}}
+            <h2 class="text-yellow text-xl">Market</h2>
+            {{!-- search --}}
+            <div class="w-full max-w-xl relative flex">
+                <span class="absolute left-4 top-3 text-lg text-gray">
+                    <i class="fas fa-search"></i>
+                </span>
+                <input type = "text" class="w-full border-primary border-r-0 pl-12 py-3 pr-3 rounded-1-md focus:outline-none" placeholder="search">
+                <button class = "bg-yellow border border-yellow text-white px-8 rounded-r-md hover:bg-transparent hover:text-yellow transition">Search</button>
+            </div>
+            {{!-- logins --}}
+           
+            <div class="flex items-center space-x-2">
+                <a href="/login" class="text-center text-yellow" >Login</a>
+                  
+            </div>
+           
+            
+            
+            
+            <div class="flex items-center space-x-2">
+                <a href="/carts" class="text-center text-yellow" >Cart</a>
+                    
+            </div>
+            <div class="flex items-center space-x-2">
+                <a href="#" class="text-center text-yellow" >Account</a>
+                  
+            </div>
+
+        </div>
+</header>
 <body>
-    
-    <main>
-        {{{body}}}
-    </main>
+{{{body}}}
     {{!-- Add more .js files for either login, logout, etc --}}
     <script src="/js/index.js"></script>
 </body>

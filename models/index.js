@@ -21,12 +21,12 @@ User.hasMany(Cart, {
 })
 //Cart Joins
 // Product gets connected to the user if it's in the cart.
-Product.belongsTo(User, {
-    through: {
-        model: Cart,
-    },
-    as: 'user_cart'
-})
+// Product.belongsTo(User, {
+//     through: {
+//         model: Cart,
+//     },
+//     // as: 'user_cart'
+// })
 //Product Joins
 // The Product belongs to a seller that calls from the user model.
 Product.belongsTo(User, {

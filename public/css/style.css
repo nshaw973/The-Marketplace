@@ -576,6 +576,10 @@ video {
   display: flex;
 }
 
+.grid {
+  display: grid;
+}
+
 .w-2\/5 {
   width: 40%;
 }
@@ -590,6 +594,14 @@ video {
 
 .max-w-xl {
   max-width: 36rem;
+}
+
+.grid-cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.grid-rows-3 {
+  grid-template-rows: repeat(3, minmax(0, 1fr));
 }
 
 .flex-row {
@@ -610,6 +622,10 @@ video {
 
 .justify-between {
   justify-content: space-between;
+}
+
+.gap-4 {
+  gap: 1rem;
 }
 
 .space-x-2 > :not([hidden]) ~ :not([hidden]) {
