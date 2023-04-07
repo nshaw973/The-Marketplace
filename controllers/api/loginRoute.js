@@ -1,9 +1,10 @@
 const router = require('express').Router();
-const User = require('../../models');
+const { User } = require('../../models');
 // models later
 
 //sign up route - GET request
-router.get('/signup', async (req, res) => {
+console.log('got this far')
+router.post('/signup', async (req, res) => {
     try {
         res.render('signup');
     } catch(err) {
@@ -13,17 +14,21 @@ router.get('/signup', async (req, res) => {
 //sign up route - POST request
 router.post('/signup', async (req, res) => {
     try {
-        const newUser = await User.create({
-            username: req.body.name,
-            password: req.body.password
-        });
+        const newUser = await User.create({ 
+            username: newUser.username,
+            password: newUser.password,
+            email: newUser.email
+          });
+        
         req.session.save(() => {
             req.session.userId = newUser.id;
             req.session.name = newUser.name;
+            req.session.email = newUser.email;
             req.session.loggedIn = true;
 
-            res.json(newUser)
+            res.redirect('/carts')
         });
+        
     } catch (err) {
         res.status(500).json(err);
     }
