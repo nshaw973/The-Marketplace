@@ -1,37 +1,3 @@
-<header class = "py-4 shadow-sm bg-gray">
-        {{!-- Marketplace Banner --}} 
-        <div class="container flex items-center justify-between">
-
-            {{!-- logo --}}
-            <h2 class="text-yellow text-xl">Market</h2>
-            {{!-- search --}}
-            <div class="w-full max-w-xl relative flex">
-                <span class="absolute left-4 top-3 text-lg text-gray">
-                    <i class="fas fa-search"></i>
-                </span>
-                <input type = "text" class="w-full border-primary border-r-0 pl-12 py-3 pr-3 rounded-1-md focus:outline-none" placeholder="search">
-                <button class = "bg-yellow border border-yellow text-white px-8 rounded-r-md hover:bg-transparent hover:text-yellow transition">Search</button>
-            </div>
-            {{!-- logins --}}
-           
-            <div class="flex items-center space-x-2">
-                <a href="/login" class="text-center text-yellow" >Login</a>
-                  
-            </div>
-           
-            
-            
-            
-            <div class="flex items-center space-x-2">
-                <a href="/carts" class="text-center text-yellow" >Cart</a>
-                    
-            </div>
-            <div class="flex items-center space-x-2">
-                <a href="#" class="text-center text-yellow" >Account</a>
-                  
-            </div>
-
-        </div>
 
         <div class = "flex flex-row mt-20">
             <div class = "w-2/5 flex flex-col justify-center">
@@ -45,18 +11,23 @@
                 <img src="/images/hero3.jpg" class="w-full">
             </div>
         </div>
+        
    {{!-- sections for cards to display items --}}
-   <div class="d-inline p-5">
+   <div class = "grid gap-4 grid-cols-3 grid-rows-3">
+   {{#each products as |product|}}
+   <form action="/create-checkout-session/{{product.id}}" method="POST" >
     <div class="card" style="width: 18rem;">
-  <img src="..." class="card-img-top" alt="...">
+  <img src="{{product.img}}" class="card-img-top" alt="...">
   <div class="card-body">
-    <h5 class="card-title">Product name</h5>
-    <p class="card-text">Description: blahshh.</p>
-    <form action="/create-checkout-session" method="POST">
-        <button type="submit" id="checkout-button" class ="bg-yellow border border-yellow text-white px-8 rounded-r-md hover:bg-transparent hover:text-yellow transition">Checkout</button>
+    <h5 class="card-title">{{product.product_name}}</h5>
+    <p class="card-text">Price: ${{product.price}}</p>
+    <p class="card-text">{{product.description}}</p>
+    <p class="card-text">Stock: {{product.stock}}</p>
+    
+        <button type="submit" id="checkout-button" class ="bg-yellow border border-yellow text-white px-8 rounded-r-md hover:bg-transparent hover:text-yellow transition" data-id="{{product.id}}">Checkout</button>
       </form>
 </div>
    </div>
-
+   {{/each}}
    </div>
-    </header>
+    

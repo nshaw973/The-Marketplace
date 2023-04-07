@@ -1,15 +1,24 @@
 const router = require('express').Router();
+const {User,Product,Cart} = require('../models');
 // const stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY);
 const stripe = require('stripe')('sk_test_51MtMgCFsxalzdvcdc5tDP213h3qLVySCf3NesuAkpDIg81LwfRrIIRlcbIZhQCEqXn5GayrtWOSv4rPpOKcQ75pu00dDxC09LW');
 //Express
-const storeItems = new Map([[1,{priceInCents:10000,name:"learn react"}],[2,{priceInCents:20000, name:" Learn CSS"}]]);
+
 // for testing purpose
 const user = [
 
 ]
 router.get('/', async (req, res) => {
     try {
-        res.render('homepage');
+        const productData = await Product.findAll();
+        console.log(productData);
+        const products = productData.map((products)=>{
+           return products.get({plain:true})
+        });
+        console.log(products);
+        res.render('homepage',{
+            products
+        });
     } catch(err) {
         res.status(500)
     }
@@ -30,6 +39,8 @@ router.get('/signup', async (req, res) => {
     }
 });
 router.post('/signup', async (req, res) => {
+    const signup = await User.create(req.body);
+    console.log(signup);
     try {
         const password = (req.body.password);
         user.push({
@@ -83,7 +94,30 @@ router.get('/carts', async (req, res) => {
 //         console.log(err);
 //     }
 // })
-router.post('/create-checkout-session', async (req, res) => {
+router.post('/create-checkout-session/:id', async (req, res) => {
+
+//     const items = await Product.findAll({where:{id:req.params.id}});
+//    const line_item = items.mao((item)=>{
+//     return {
+        
+//             price_data: {
+//               currency: 'usd',
+//               product_data: {
+//                 name: item.product_name,
+//                 Images: [item.img],
+//                 description: item.description,
+//                 metadata:{
+//                     id: item.id,
+//                 }
+//               },
+//               unit_amount: item.price*100,
+//             },
+//             quantity: item.stock,
+          
+//     }
+//    })
+//     console.log(items);
+
     const session = await stripe.checkout.sessions.create({
       line_items: [
         {
@@ -111,5 +145,6 @@ router.post('/create-checkout-session', async (req, res) => {
         res.status(500)
     }
 });
+// product page
 
 module.exports = router

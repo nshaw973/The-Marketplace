@@ -37,13 +37,13 @@ User.init(
                 //Pass Length min 8 characters
                 len: [8]
             },
+        },
         // In case we want to add "Member since {{user_created}}!!!"
         user_created: {
             type: DataTypes.DATE,
             allowNull: false,
             defaultValue: DataTypes.NOW
-        }
-        },
+        },    
     },
     {
     //Encrypts created users password.
