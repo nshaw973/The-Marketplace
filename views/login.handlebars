@@ -1,12 +1,14 @@
-<script src="/js/login.js"></script>
 <h2>Log In</h2>
-<form action  = "/login" method="post">
-<form class="login-form">
-<label for="email">Email</label>
-  <input type="text" name="email" placeholder="Email">
-<label for="password">Login</label>
-<input type ="password" name="password" placeholder="Password">
-<button class="bg-yellow border border-yellow rounded-r-md" type="submit"></button>
+<form action="/login" class="login-form">
+  <label for="email">Email</label>
+  <input type="text" name="email" placeholder="Email" id="email-login" />
+  <label for="password">Login</label>
+  <input type="password" name="password" placeholder="Password" id="password-login"/>
+  <button
+    class="bg-yellow border border-yellow rounded-r-md"
+    type="submit" id="submit"
+  >Submit</button>
 </form>
 
-<a href="/signup" >Signup</a>
+<a href="/signup">Signup</a>
+<script src="./js/login.js"></script>

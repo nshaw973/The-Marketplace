@@ -38,23 +38,7 @@ router.get('/signup', async (req, res) => {
         res.status(500)
     }
 });
-router.post('/signup', async (req, res) => {
-    const signup = await User.create(req.body);
-    console.log(signup);
-    try {
-        const password = (req.body.password);
-        user.push({
-            id:Date.now().toString(),
-            name: req.body.name,
-            password: password
-        })
-        res.redirect('/login')
-    } catch(err) {
-        res.status(500)
-        res.redirect('/signup');
-    }
-    console.log(user);
-});
+
 router.get('/carts', async (req, res) => {
     try {
         res.render('carts');
@@ -117,7 +101,7 @@ router.post('/create-checkout-session/:id', async (req, res) => {
 });
 // product page
 
-=======
+
 /* Test Route for account dashboard */
  router.get('/account', async (req, res) => {
     try {
