@@ -1,0 +1,20 @@
+<div class ="flex flex-wrap">
+    {{#each searchResults}}
+    <div class = "card card-compact w-96 bg-base-100 shadow-xl">
+        <figure>
+            <img src = "{{this.thumbnail}}">
+        </figure>
+        <div class = "card-body">
+            <p class = "card-title">{{this.title}}</p>
+            <p>{{this.description}}</p>
+            <p class = "text-xl">{{this.category}}</p>
+            <p class = "text-xl">${{this.price}}</p>
+            <div class = "card-actions justify-end">
+                <button class = "btn btn-accent">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+{{/each}}
+</div>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="{{searchScript}}"></script>

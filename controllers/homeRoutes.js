@@ -64,6 +64,7 @@ router.get('/carts', async (req, res) => {
 });
 
 
+
 router.post('/create-checkout-session/:id', async (req, res) => {
 
 //     const items = await Product.findAll({where:{id:req.params.id}});
@@ -117,7 +118,6 @@ router.post('/create-checkout-session/:id', async (req, res) => {
 });
 // product page
 
-=======
 /* Test Route for account dashboard */
  router.get('/account', async (req, res) => {
     try {
@@ -126,5 +126,13 @@ router.post('/create-checkout-session/:id', async (req, res) => {
         res.status(500);
     }
  })
+
+//  router.get('*', (req, res) => {
+//     try {
+//         res.render('homepage');
+//     } catch(err) {
+//         res.status(500);
+//     };
+// });
 
 module.exports = router
