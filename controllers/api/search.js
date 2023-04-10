@@ -1,4 +1,5 @@
 const search = require('express').Router();
+const pollDatabase = require('../../utils/polling.js');
 
 //get route to search query, update HTML, and redirect to new URL
 //When client sends url ./search with query parameters ?term=* &category=*
@@ -7,7 +8,7 @@ const search = require('express').Router();
 search.get('/', async (req, res) => {
     try {
         if(req.query.term){
-            const data = await pollDummyDatabase(req.query.term);
+            const data = await pollDatabase(req.query.term);
             console.log(data.products);
             if(data.products.length === 0){
                 res.render('search',{
@@ -30,18 +31,6 @@ search.get('/', async (req, res) => {
     }
 });
 
-async function pollDummyDatabase(query){
-    if (query === 'all'){
-        console.log(`polling data using query: ${query} products`);
-        const response = await fetch(`https://dummyjson.com/products?limit=0`);
-        const data = await response.json();
-        return data;
-    } else if(query !== 'all'){
-        console.log(`polling data using query: ${query}`);
-        const response = await fetch(`https://dummyjson.com/products/search?q=${query}`);
-        const data = await response.json();
-        return data;
-    };
-};
+
 
 module.exports = search;

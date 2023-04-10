@@ -31,7 +31,9 @@ router.post('/signup', async (req, res) => {
 //login get request
 router.get('/login', async (req, res) => {
     try {
-        res.render('login');
+        res.render('login',{
+            "loginScript": "/js/login.js",
+        });
     } catch(err) {
         res.status(500).send("internal Server Error");
     }

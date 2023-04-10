@@ -28,7 +28,9 @@ router.get('/', async (req, res) => {
 });
 router.get('/login', async (req, res) => {
     try {
-        res.render('login');
+        res.render('login',{
+            "loginScript": "/js/login.js",
+        });
     } catch(err) {
         res.status(500)
     }
