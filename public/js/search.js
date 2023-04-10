@@ -7,9 +7,14 @@ console.log("search script")
 searchButton.on('click',() => {
     console.log('Button clicked!');
     var searchTerm = searchForm.val().trim().toLowerCase();
-    var myParams = { term: searchTerm}; 
-    redirect(myParams); 
-})
+    if(searchTerm === ''){
+        var myParams = { term: 'all'}; 
+        redirect(myParams); 
+    } else if( searchTerm !== '') {
+        var myParams = { term: searchTerm}; 
+        redirect(myParams); 
+    };
+});
 
 async function redirect(myParams){
     // Convert the parameter object into a query string

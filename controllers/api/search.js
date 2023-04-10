@@ -6,25 +6,25 @@ const search = require('express').Router();
 //then server updates the search html to reflect the search results
 search.get('/', async (req, res) => {
     try {
-        if(req.query.term !==""){
-            console.log("1")
+        if(req.query.term){
             const data = await pollDummyDatabase(req.query.term);
-            console.log("1.5")
-            res.render('search',{
-                "searchScript": "/js/search.js",
-                "searchResults": data.products
-            });
-        } else if(req.query.term ===""){
-            console.log("2")
-            const data = await pollDummyDatabase('all');
-            res.render('search',{
-                "searchScript": "/js/search.js",
-                "searchResults": data.products
-            });
+            console.log(data.products);
+            if(data.products.length === 0){
+                res.render('search',{
+                    "searchScript": "/js/search.js",
+                    "searchResults": data.products,
+                    "resultAvailiable": false
+                });
+            } else {
+                res.render('search',{
+                    "searchScript": "/js/search.js",
+                    "searchResults": data.products,
+                    "resultAvailable": true
+                });
+            };
         } else{
             res.render('homepage');
         };
-
     } catch(err) {
         res.status(500)
     }
@@ -33,15 +33,15 @@ search.get('/', async (req, res) => {
 async function pollDummyDatabase(query){
     if (query === 'all'){
         console.log(`polling data using query: ${query} products`);
-        const response = await fetch(`https://dummyjson.com/products`)
-        const data = await response.json()
+        const response = await fetch(`https://dummyjson.com/products?limit=0`);
+        const data = await response.json();
         return data;
-    } else if(query === 'all'){
+    } else if(query !== 'all'){
         console.log(`polling data using query: ${query}`);
-        const response = await fetch(`https://dummyjson.com/products/search?q=${query}`)
-        const data = await response.json()
+        const response = await fetch(`https://dummyjson.com/products/search?q=${query}`);
+        const data = await response.json();
         return data;
-    }
-}
+    };
+};
 
 module.exports = search;

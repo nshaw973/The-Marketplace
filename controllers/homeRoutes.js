@@ -15,9 +15,12 @@ router.get('/', async (req, res) => {
         const products = productData.map((products)=>{
            return products.get({plain:true})
         });
+        const script = {
+            "indexScript": "./js/index.js",
+        };
         console.log(products);
         res.render('homepage',{
-            products
+            ...products, ...script
         });
     } catch(err) {
         res.status(500)
