@@ -1,12 +1,16 @@
 <h2>Log In</h2>
-<form action  = "/login" method="post">
-<label for="name">Email</label>
-<input type ="text" name="name" placeholder="Name">
-<label for="password">Login</label>
-<input type ="password" name="password" placeholder="Password">
-<input type="submit" class="bg-yellow border border-yellow rounded-r-md">
+<form action="/login" class="login-form">
+  <label for="email">Email</label>
+  <input type="text" name="email" placeholder="Email" id="email-login" />
+  <label for="password">Login</label>
+  <input type="password" name="password" placeholder="Password" id="password-login"/>
+  <button
+    class="bg-yellow border border-yellow rounded-r-md"
+    type="submit" id="submit"
+  >Submit</button>
 </form>
 
 <a href="/signup" >Signup</a>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="{{loginScript}}"></script>
+

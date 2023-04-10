@@ -1,12 +1,20 @@
 <h2>Sign up</h2>
-<form action  = "/signup" method="post">
-<label for="name">name</label>
-<input type ="text" name="name" placeholder="Name">
-<label for="email">Email</label>
-<input type ="text" name="email" placeholder="Email">
-<label for="password">Password</label>
-<input type ="password" name="password" placeholder="Password">
-<input type="submit" class="bg-yellow border border-yellow rounded-r-md">
+<form action="/signup" class="signup-form">
+  <label for="name">Name</label>
+  <input type="text" name="name" placeholder="Name" id="name-signup" />
+  <label for="email">Name</label>
+  <input type="text" name="email" placeholder="email" id="email-signup" />
+  <label for="password">Password</label>
+  <input
+    type="password"
+    name="password"
+    placeholder="Password"
+    id="password-signup"/>
+  <button
+    type="submit"
+    class="bg-yellow border border-yellow rounded-r-md">Submit</button>
 </form>
 
-<a href="/login" >Login</a>
+<a href="/login">Login</a>
+
+<script src="./js/signup.js"></script>
