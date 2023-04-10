@@ -10,30 +10,52 @@ Product.init(
             type: DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true,
-            autoIncrement: true
+            
         },
         product_name: {
             type: DataTypes.STRING(40),
             allowNull: false
         },
-        img:{
-            type:DataTypes.STRING(200),
+        images:{
+            type:DataTypes.JSON,
             allowNull:true
         },
         description: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING(500),
             allowNull: false,      
         },
+        discountPercentage:{
+            type:DataTypes.DECIMAL,
+            allowNull:true,
+        },
+        rating:{
+            type:DataTypes.DECIMAL,
+            allowNull:true,
+        },
+        brand:{
+            type:DataTypes.STRING,
+            allowNull:true,
+        },
+        category:{
+            type:DataTypes.STRING,
+            allowNull:true,
+        },
+        thumbnail:{
+            type:DataTypes.STRING,
+            allowNull:true,
+        },
         price: {
-            type: DataTypes.DECIMAL(10,2),
+            type: DataTypes.DECIMAL,
             allowNull: false,
         },
         stock: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.INTEGER(255),
             allowNull: false,
         },
+        
         seller_id: {
             type: DataTypes.INTEGER,
+            allowNull:true,
             references: {
                 model: 'user',
                 key: 'id'

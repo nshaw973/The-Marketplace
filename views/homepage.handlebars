@@ -15,16 +15,26 @@
    {{!-- sections for cards to display items --}}
    <div class = "grid gap-4 grid-cols-3 grid-rows-3">
    {{#each products as |product|}}
-   <form action="/create-checkout-session/{{product.id}}" method="POST" >
-    <div class="card" style="width: 18rem;">
-  <img src="{{product.img}}" class="card-img-top" alt="...">
+   <form action="/{{product.id}}" method="POST" >
+    <div class="card" style="width: 18rem;" id="products">
+
+   
+  <img src="{{product.thumbnail}}" class="card-img-top" alt="productPicture">
   <div class="card-body">
-    <h5 class="card-title">{{product.product_name}}</h5>
-    <p class="card-text">Price: ${{product.price}}</p>
-    <p class="card-text">{{product.description}}</p>
-    <p class="card-text">Stock: {{product.stock}}</p>
+
+
+
+    <label for="{{generateId 'name'}}">{{product.product_name}}</label>
+    <input type="text" name="name" id="{{generateId 'name'}}">
+    <label for="{{generateId 'price'}}">Price: ${{product.price}}</label>
+    <input type="text" name="price" id="{{generateId 'price'}}">
+    <label for="{{generateId 'description'}}">{{product.description}}</label>
+    <input type="text" name="description" id="{{generateId 'description'}}">
+    <label for="{{generateId 'stock'}}">Stock: {{product.stock}}</label>
+    <input type="text" name="stock" id="{{generateId 'stock'}}">
     
-        <button type="submit" id="checkout-button" class ="bg-yellow border border-yellow text-white px-8 rounded-r-md hover:bg-transparent hover:text-yellow transition" data-id="{{product.id}}">Checkout</button>
+    
+        <button type="submit" onclick="addToCart(${product.id})" class =" carts bg-yellow border border-yellow text-white px-8 rounded-r-md hover:bg-transparent hover:text-yellow transition" data-id="{{product.id}}">Checkout</button>
       </form>
 </div>
    </div>
@@ -32,3 +42,5 @@
    </div>
     
 
+
+<script src='js/cartscript.js'></script>

@@ -23,6 +23,24 @@ router.get('/', async (req, res) => {
         res.status(500)
     }
 });
+router.post('/:id',async(req,res)=>{
+    
+    try {
+        
+        const items =  await Product.findAll({where:{id:req.params.id}});
+        const product = items.map((item)=>{
+            return item.get({plain:true});
+        })
+        // const cart = await Cart.create(product);
+        const {product_name,price,thumbnail,stock} = product[0];
+        const cart = await Cart.create({product_name: product_name,price:price,thumbnail:thumbnail,stock:stock});
+        console.log(cart);
+    
+    res.render("carts");
+    } catch (error) {
+        console.log(error);
+    }
+})
 router.get('/login', async (req, res) => {
     try {
         res.render('login');
@@ -48,16 +66,21 @@ router.post('/signup', async (req, res) => {
             name: req.body.name,
             password: password
         })
+        console.log(user);
         res.redirect('/login')
     } catch(err) {
         res.status(500)
         res.redirect('/signup');
     }
-    console.log(user);
+    
 });
 router.get('/carts', async (req, res) => {
     try {
-        res.render('carts');
+        const carts = await Cart.findAll();
+        const cartItems = carts.map((cart)=>{
+            return cart.get({plain:true})
+         });
+        res.render('carts',{cartItems});
     } catch(err) {
         res.status(500)
     }
@@ -66,41 +89,29 @@ router.get('/carts', async (req, res) => {
 
 router.post('/create-checkout-session/:id', async (req, res) => {
 
-//     const items = await Product.findAll({where:{id:req.params.id}});
-//    const line_item = items.mao((item)=>{
-//     return {
+    const items = await Product.findAll({where:{id:req.params.id}});
+   const line_items = items.map((item)=>{
+    return {
         
-//             price_data: {
-//               currency: 'usd',
-//               product_data: {
-//                 name: item.product_name,
-//                 Images: [item.img],
-//                 description: item.description,
-//                 metadata:{
-//                     id: item.id,
-//                 }
-//               },
-//               unit_amount: item.price*100,
-//             },
-//             quantity: item.stock,
+            price_data: {
+              currency: 'usd',
+              product_data: {
+                name: item.product_name,
+                description: item.description,
+                metadata:{
+                    id: item.id,
+                }
+              },
+              unit_amount: item.price,
+            },
+            quantity: item.stock,
           
-//     }
-//    })
-//     console.log(items);
+    }
+   })
+   
 
     const session = await stripe.checkout.sessions.create({
-      line_items: [
-        {
-          price_data: {
-            currency: 'usd',
-            product_data: {
-              name: 'T-shirt',
-            },
-            unit_amount: 2000,
-          },
-          quantity: 1,
-        },
-      ],
+      line_items,
       mode: 'payment',
       success_url: 'http://localhost:3001/success',
       cancel_url: 'http://localhost:3001/',
@@ -117,7 +128,7 @@ router.post('/create-checkout-session/:id', async (req, res) => {
 });
 // product page
 
-=======
+
 /* Test Route for account dashboard */
  router.get('/account', async (req, res) => {
     try {
