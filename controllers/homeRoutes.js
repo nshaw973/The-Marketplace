@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const {User,Product,Cart} = require('../models');
+const withAuth = require('../utils/auth');
 // const stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY);
 const stripe = require('stripe')('sk_test_51MtMgCFsxalzdvcdc5tDP213h3qLVySCf3NesuAkpDIg81LwfRrIIRlcbIZhQCEqXn5GayrtWOSv4rPpOKcQ75pu00dDxC09LW');
 //Express
@@ -11,7 +12,6 @@ const user = [
 router.get('/', async (req, res) => {
     try {
         const productData = await Product.findAll();
-        console.log(productData);
         const products = productData.map((products)=>{
            return products.get({plain:true})
         });
@@ -44,7 +44,7 @@ router.get('/signup', async (req, res) => {
     }
 });
 
-router.get('/carts', async (req, res) => {
+router.get('/carts', withAuth, async (req, res) => {
     try {
         res.render('carts');
     } catch(err) {
@@ -108,7 +108,7 @@ router.post('/create-checkout-session/:id', async (req, res) => {
 // product page
 
 /* Test Route for account dashboard */
- router.get('/account', async (req, res) => {
+ router.get('/account', withAuth, async (req, res) => {
     try {
         res.render('account');
     } catch(err) {

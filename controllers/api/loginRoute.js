@@ -11,7 +11,6 @@ router.post('/', async (req, res) => {
       email: req.body.email,
       password: req.body.password
     });
-    console.log(newUser)
     req.session.save(() => {
       req.session.userId = newUser.id;
       req.session.email = newUser.email;
@@ -50,7 +49,6 @@ router.post('/login', async (req, res) => {
       req.session.userId = user.id;
       req.session.email = user.email;
       req.session.loggedIn = true;
-
       res.json({ user, message: 'You are now logged in!' });
     });
   } catch (err) {
