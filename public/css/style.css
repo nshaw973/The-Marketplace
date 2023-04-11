@@ -779,3 +779,32 @@ video {
   outline: 2px solid transparent;
   outline-offset: 2px;
 }
+
+/* Custom CSS */
+.account-options {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  box-shadow: -5px 0 5px rgba(0, 0, 0, 0.5), 5px 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.account-options div {
+  display: flex;
+  width: 90%;
+  margin-top: 2%;
+  border-bottom: solid black 2px;
+  text-indent: 3%;
+
+}
+
+.account-containers {
+  width: 90%;
+  height: 350px;
+  border-bottom: black solid 2px;
+}
+
+.profilepic-container {
+  width: 200px;
+  height: 200px;
+  border: solid black 1px;
+}
