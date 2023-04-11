@@ -17,7 +17,7 @@ router.get('/', async (req, res) => {
         };
         console.log(products);
         res.render('homepage',{
-            ...products, ...script
+            products
         });
     } catch(err) {
         res.status(500)

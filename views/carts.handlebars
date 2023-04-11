@@ -1,17 +1,17 @@
 
-        <div class="flex items-center justify-center py-8">
+        <div class="bg-blue">
             
-            <button onclick="checkoutHandler(false)" class="py-2 px-10 rounded bg-indigo-600 hover:bg-indigo-700 text-white">Open Modal</button>
+            <button onclick="checkoutHandler(false)" class="flex justify-center">Open Modal</button>
             
         </div>
-        <div class="w-full h-full bg-black dark:bg-gray-900 bg-opacity-90 top-0 overflow-y-auto overflow-x-hidden fixed sticky-0" id="chec-div">
+        <div class="w-full h-full bg-black dark:bg-gray-900 bg-opacity-90 top-0 overflow-y-auto overflow-x-hidden sticky-0" id="chec-div">
             <div class="w-full absolute z-10 right-0 h-full overflow-x-hidden transform translate-x-0 transition ease-in-out duration-700" id="checkout">
                 <div class="flex items-end lg:flex-row flex-col justify-end" id="cart">
                     <div class="lg:w-1/2 md:w-8/12 w-full lg:px-8 lg:py-14 md:px-6 px-4 md:py-8 py-4 bg-white dark:bg-gray-800 overflow-y-hidden overflow-x-hidden lg:h-screen h-auto" id="scroll">
                         <div class="flex items-center text-gray-500 hover:text-gray-600 dark:text-white cursor-pointer" onclick="checkoutHandler(false)">
                             <img class="dark:hidden" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/shopping-cart-1-svg1.svg" alt="previous"/>
                              <img class="dark:block hidden" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/shopping-cart-1-svg1dark.svg" alt="previous"/>
-                            <p class="text-sm pl-2 leading-none dark:hover:text-gray-200">Back</p>
+                            <p class="text-sm pl-2 leading-none dark:hover:text-gray-200 pt-300px">Back</p>
                         </div>
                         <p class="lg:text-4xl text-3xl font-black leading-10 text-gray-800 dark:text-white pt-3">Cart</p>
                         {{#each cartItems as |cart|}}
@@ -25,9 +25,9 @@
                                 <div class="flex items-center justify-between w-full pt-1">
                                     <p class="text-base font-black leading-none text-gray-800 dark:text-white">{{cart.product_name}}</p>
                                     <select aria-label="Select quantity" class="py-2 px-1 border border-gray-200 mr-6 focus:outline-none dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-white">
-                                        <option>01</option>
-                                        <option>02</option>
-                                        <option>03</option>
+                                        <option id="upDown">01</option>
+                                        <option id="upDown">02</option>
+                                        <option id="upDown">03</option>
                                     </select>
                                 </div>
                                 
