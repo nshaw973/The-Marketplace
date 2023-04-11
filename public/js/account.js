@@ -2,7 +2,7 @@
 const searchForm = $("#search-input");
 const searchButton = $("#search-button");
 
-console.log("index script");
+console.log("account script");
 
 searchButton.on('click',() => {
     console.log('Button clicked!');
