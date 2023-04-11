@@ -51,7 +51,8 @@ console.log("cartDisplay script");
 const searchForm = $("#search-input");
 const searchButton = $("#search-button");
 
-searchButton.on('click',() => {
+searchButton.on('click',(event) => {
+    event.preventDefault();
     console.log('Button clicked!');
     var searchTerm = searchForm.val().trim().toLowerCase();
     if(searchTerm === ''){
