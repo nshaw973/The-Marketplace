@@ -56,24 +56,7 @@ router.get('/signup', async (req, res) => {
         res.status(500)
     }
 });
-router.post('/signup', async (req, res) => {
-    const signup = await User.create(req.body);
-    console.log(signup);
-    try {
-        const password = (req.body.password);
-        user.push({
-            id:Date.now().toString(),
-            name: req.body.name,
-            password: password
-        })
-        console.log(user);
-        res.redirect('/login')
-    } catch(err) {
-        res.status(500)
-        res.redirect('/signup');
-    }
-    
-});
+
 router.get('/carts', async (req, res) => {
     try {
         const carts = await Cart.findAll();
