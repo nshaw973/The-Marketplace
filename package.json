@@ -17,6 +17,7 @@
     "bcrypt": "^5.0.0",
     "connect-session-sequelize": "^7.0.4",
     "cors": "^2.8.5",
+    "daisyui": "^2.51.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "express-handlebars": "^5.2.0",

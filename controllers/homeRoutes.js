@@ -15,9 +15,12 @@ router.get('/', async (req, res) => {
         const products = productData.map((products)=>{
            return products.get({plain:true})
         });
+        const script = {
+            "indexScript": "./js/index.js",
+        };
         console.log(products);
         res.render('homepage',{
-            products
+            ...products, ...script
         });
     } catch(err) {
         res.status(500)
@@ -25,7 +28,9 @@ router.get('/', async (req, res) => {
 });
 router.get('/login', async (req, res) => {
     try {
-        res.render('login');
+        res.render('login',{
+            "loginScript": "/js/login.js",
+        });
     } catch(err) {
         res.status(500)
     }
@@ -46,6 +51,7 @@ router.get('/carts', async (req, res) => {
         res.status(500)
     }
 });
+
 
 
 router.post('/create-checkout-session/:id', async (req, res) => {
@@ -101,7 +107,6 @@ router.post('/create-checkout-session/:id', async (req, res) => {
 });
 // product page
 
-
 /* Test Route for account dashboard */
  router.get('/account', async (req, res) => {
     try {
@@ -110,5 +115,13 @@ router.post('/create-checkout-session/:id', async (req, res) => {
         res.status(500);
     }
  })
+
+//  router.get('*', (req, res) => {
+//     try {
+//         res.render('homepage');
+//     } catch(err) {
+//         res.status(500);
+//     };
+// });
 
 module.exports = router
