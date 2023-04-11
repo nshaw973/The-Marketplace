@@ -1,37 +1,25 @@
+const addButton = document.querySelectorAll('.addToCartButton');
+for(let i=0;i<addButton.length;i++){
+    let specificButton = addButton[i];
+    specificButton.addEventListener('click',()=>{
+        const id = specificButton.dataset.id;
+        console.log(id);
+        const response = fetch('/',{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify({id:id})
+        }).then(function(res){
+            return res.json();
+        }).catch(function(error){
+            console.error(error);
+        })
+        
+    })
+}
+const addToCart = ()=>{
 
+    
 
-const products = document.getElementById("products");
-const button = document.querySelectorAll(".carts");
-
-// const {Product} = require("../../models");
-// const renderProducts = async()=>{
-//     for (let i=0;i<button.length;i++){
-//         button[i].addEventListener('click',async ()=>{
-//             // cartNumbers();
-//             const id = button[i].getAttribute('data-id');
-//             const response = await fetch(`/${id}`,{
-//                 method:'POST',
-//                 body: JSON.stringify({product_name,description,stock}),
-//                 headers:{
-//                     'Content-Type': 'application/json',
-//                 }
-//             });
-//             const jsonResponse = await response.json();
-//             console.log(jsonResponse);
-
-//             console.log(id);
-//         })
-//     }
- 
-// }
-const addToCart = (id)=>{
-
-};
-// const cartNumbers = async(event)=>{
-//     const id = event.target.get
-//    const response = await fetch(`/${id}`);
-//    const jsonResponse = await response.json();
-//    console.log(jsonResponse)
-// }
-// renderProducts();
-
+}
