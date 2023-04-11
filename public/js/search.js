@@ -4,7 +4,8 @@ const searchButton = $("#search-button");
 
 console.log("search script")
 
-searchButton.on('click',() => {
+searchButton.on('click',(event) => {
+    event.preventDefault();
     console.log('Button clicked!');
     var searchTerm = searchForm.val().trim().toLowerCase();
     if(searchTerm === ''){
