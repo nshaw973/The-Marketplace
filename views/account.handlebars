@@ -1,4 +1,52 @@
-<h1>Account testing by Nathan</h1>
+<section
+  class='container mx-auto flex justify-center account-options'
+  style='height: 100%'
+>
+  <h1 style='margin-top: 1%;'>Welcome {{name}}!</h1>
+  <img
+    src='uploads/{{imagePath}}'
+    alt='{{name}}-profilepic'
+    class='profilepic-container'
+  />
+  <div class='py-4'>
+    <ul class='divide-y divide-gray-200' style='width: 100%;'>
+      <li><a
+          href='/carts'
+          class='block py-3 text-sm text-gray-700 hover:text-gray-900 font-medium'
+          style='width:fit-content; white-space:nowrap;'
+        >View Cart</a></li>
+      <li><a
+          href='#favorites'
+          class='block py-3 text-sm text-gray-700 hover:text-gray-900 font-medium'
+          style='width:fit-content; white-space:nowrap;'
+        >Favorites</a></li>
+      <li><a
+          href='#'
+          class='block py-3 text-sm text-gray-700 hover:text-gray-900 font-medium'
+          style='width:fit-content; white-space:nowrap;'
+        >Edit Profile</a></li>
+      <li><a
+          href='#'
+          class='block py-3 text-sm text-gray-700 hover:text-gray-900 font-medium'
+          style='width:fit-content; white-space:nowrap;'
+        >Edit Payment</a></li>
+    </ul>
+  </div>
 
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script src="{{accountScript}}"></script>
+  <form action='/api/image/upload' method='POST' enctype='multipart/form-data'>
+    <label for='image'>Select an image to upload:</label>
+    <input type='file' id='image' name='image' />
+    <button type='submit'>Upload</button>
+  </form>
+
+  <section class='account-containers'>
+    <h1 id='cart'>Cart</h1>
+  </section>
+
+  <section class='account-containers'>
+    <h1 id='favorites'>Favorites</h1>
+  </section>
+</section>
+
+<script src='https://code.jquery.com/jquery-3.6.4.min.js'></script>
+<script src='{{accountScript}}'></script>
