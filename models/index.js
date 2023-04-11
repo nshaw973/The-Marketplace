@@ -16,15 +16,12 @@ User.hasMany(Product, {
     onDelete: 'CASCADE'
 });
 //User many products on a single cart
-User.hasMany(Cart, {
-    foreignKey: 'user_id',
-    onDelete: 'CASCADE'
-})
 
 User.hasOne(Profileimage, {
     foreignKey: 'user_id',
     onDelete: 'CASCADE'
 })
+
 //Cart Joins
 // Product gets connected to the user if it's in the cart.
 // Product.belongsTo(User, {

@@ -8,8 +8,6 @@ const stripe = require('stripe')(
 );
 //Express
 
-// for testing purpose
-const user = [];
 router.get('/', async (req, res) => {
   try {
     const productData = await Product.findAll();
@@ -29,6 +27,25 @@ router.get('/', async (req, res) => {
     res.status(500);
   }
 });
+router.post('/:id',async(req,res)=>{
+    
+    try {
+        
+        const items =  await Product.findAll({where:{id:req.params.id}});
+        const product = items.map((item)=>{
+            return item.get({plain:true});
+        })
+       console.log(product);
+        // const cart = await Cart.create(product);
+        const {product_name,price,thumbnail,stock} = product[0];
+        const cart = await Cart.create({product_name: product_name,price:price,thumbnail:thumbnail,stock:stock});
+        console.log(cart);
+    
+
+    } catch (error) {
+        console.log(error);
+    }
+})
 router.get('/login', async (req, res) => {
   try {
     res.render('login', {
@@ -48,52 +65,63 @@ router.get('/signup', async (req, res) => {
 });
 
 router.get('/carts', async (req, res) => {
-  try {
-    res.render('carts');
-  } catch (err) {
-    res.status(500);
-  }
+    try {
+        const carts = await Cart.findAll();
+        let totalPrice = 0;
+        const cartItems = carts.map((cart)=>{
+            totalPrice = totalPrice + parseInt(cart.price);
+            return cart.get({plain:true})
+         });
+        //res.render('carts',{cartItems});
+        res.render('carts', {
+            cartItems: cartItems,
+            totalPrice: totalPrice
+        })
+    } catch(err) {
+        res.status(500)
+    }
 });
+router.delete('/carts/:id',async(req,res) => {
+    // console.log("Inside delete route");
+    let myid = req.params.id;
+    // console.log(id);
+    const remove = await Cart.destroy({where:{id:myid}});
+    
+})
 
-router.post('/create-checkout-session/:id', async (req, res) => {
-  //     const items = await Product.findAll({where:{id:req.params.id}});
-  //    const line_item = items.mao((item)=>{
-  //     return {
 
-  //             price_data: {
-  //               currency: 'usd',
-  //               product_data: {
-  //                 name: item.product_name,
-  //                 Images: [item.img],
-  //                 description: item.description,
-  //                 metadata:{
-  //                     id: item.id,
-  //                 }
-  //               },
-  //               unit_amount: item.price*100,
-  //             },
-  //             quantity: item.stock,
+router.post('/create-checkout-session/', async (req, res) => {
 
-  //     }
-  //    })
-  //     console.log(items);
+    const items = await Cart.findAll();
+    console.log(items);
+   const line_items = items.map((item)=>{
+    return {
+        
+            price_data: {
+              currency: 'usd',
+              product_data: {
+                name: item.product_name,
+                images: [item.thumbnail],
+                metadata:{
+                    id: item.id,
+                }
+              },
+              unit_amount: item.price,
+            },
+            quantity: item.stock,
+          
+    }
+   })
+   
 
-  const session = await stripe.checkout.sessions.create({
-    line_items: [
-      {
-        price_data: {
-          currency: 'usd',
-          product_data: {
-            name: 'T-shirt',
-          },
-          unit_amount: 2000,
-        },
-        quantity: 1,
-      },
-    ],
-    mode: 'payment',
-    success_url: 'http://localhost:3001/success',
-    cancel_url: 'http://localhost:3001/',
+    const session = await stripe.checkout.sessions.create({
+      line_items,
+      mode: 'payment',
+      success_url: 'http://localhost:3001/success',
+      cancel_url: 'http://localhost:3001/',
+    });
+  
+    res.redirect(303, session.url);
   });
 
   res.redirect(303, session.url);

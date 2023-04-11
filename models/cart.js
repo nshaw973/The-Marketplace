@@ -10,22 +10,28 @@ Cart.init(
             type: DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true,
-            autoIncrement: true
+            autoIncrement:true,
+            
         },
-        user_id: {
-            type: DataTypes.INTEGER,
-            references: {
-                model: 'user',
-                key: 'id'
-            }
+        product_name: {
+            type: DataTypes.STRING(40),
+            allowNull: false
         },
-        product_id: {
-            type: DataTypes.INTEGER,
-            references: {
-                model: 'product',
-                key: 'id'
-            }
-        }
+        
+        thumbnail:{
+            type:DataTypes.STRING,
+            allowNull:true,
+        },
+        price: {
+            type: DataTypes.DECIMAL,
+            allowNull: false,
+        },
+        stock: {
+            type: DataTypes.INTEGER(255),
+            allowNull: false,
+        },
+        
+        
     },
     {
         sequelize,
