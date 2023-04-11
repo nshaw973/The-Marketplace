@@ -9,11 +9,8 @@ const sequelize = require('./config/connection')
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY);
 
-
 // cores for payment processing
 const cors = require('cors');
-
-
 
 const app = express();
 //Port for heroku, and localhost
