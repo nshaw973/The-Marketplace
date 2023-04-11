@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
            return products.get({plain:true})
         });
         const script = {
-            "indexScript": "./js/index.js",
+            "script": "./js/index.js",
         };
         console.log(products);
         res.render('homepage',{
@@ -45,7 +45,7 @@ router.post('/:id',async(req,res)=>{
 router.get('/login', async (req, res) => {
     try {
         res.render('login',{
-            "loginScript": "/js/login.js",
+            "script": "/js/login.js",
         });
     } catch(err) {
         res.status(500)
@@ -71,8 +71,9 @@ router.get('/carts', async (req, res) => {
         //res.render('carts',{cartItems});
         res.render('carts', {
             cartItems: cartItems,
-            totalPrice: totalPrice
-        })
+            totalPrice: totalPrice,
+            "script": "/js/cartDisplay.js"
+        });
     } catch(err) {
         res.status(500)
     }
@@ -130,7 +131,9 @@ router.post('/create-checkout-session/', async (req, res) => {
 /* Test Route for account dashboard */
  router.get('/account', async (req, res) => {
     try {
-        res.render('account');
+        res.render('account',{
+            "script": "/js/account.js",
+        });
     } catch(err) {
         res.status(500);
     }
