@@ -2,6 +2,7 @@ const Comment = require('./comment');
 const Cart = require('./cart');
 const Product = require('./product');
 const User = require('./user');
+const Profileimage = require('./image')
 
 // User Joins
 // User can have many comments spread around the site
@@ -16,6 +17,11 @@ User.hasMany(Product, {
 });
 //User many products on a single cart
 User.hasMany(Cart, {
+    foreignKey: 'user_id',
+    onDelete: 'CASCADE'
+})
+
+User.hasOne(Profileimage, {
     foreignKey: 'user_id',
     onDelete: 'CASCADE'
 })
@@ -43,9 +49,14 @@ Comment.belongsTo(User, {
     foreignKey: 'user_id'
 })
 
+Profileimage.belongsTo(User, {
+    foreignKey: 'user_id'
+})
+
 module.exports = {
     Comment,
     Cart,
     Product,
-    User
+    User,
+    Profileimage
 };

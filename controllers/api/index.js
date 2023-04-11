@@ -1,7 +1,6 @@
 const router = require('express').Router();
+const imageRoute = require('./imageRoute')
 
-//Use for each api route!
-/* router.use('/', ); */
-
+router.use('/image', imageRoute)
 
 module.exports = router;

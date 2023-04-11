@@ -116,8 +116,6 @@ router.post('/create-checkout-session/:id', async (req, res) => {
     }
 });
 // product page
-
-=======
 /* Test Route for account dashboard */
  router.get('/account', async (req, res) => {
     try {
