@@ -12,7 +12,6 @@ const helpers = require('./utils/helpers')
 
 // cores for payment processing
 const cors = require('cors');
-const { Script } = require('vm');
 
 
 
