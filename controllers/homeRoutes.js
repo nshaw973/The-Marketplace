@@ -4,10 +4,7 @@ const {User,Product,Cart} = require('../models');
 const stripe = require('stripe')('sk_test_51MtMgCFsxalzdvcdc5tDP213h3qLVySCf3NesuAkpDIg81LwfRrIIRlcbIZhQCEqXn5GayrtWOSv4rPpOKcQ75pu00dDxC09LW');
 //Express
 
-// for testing purpose
-const user = [
 
-]
 router.get('/', async (req, res) => {
     try {
         const productData = await Product.findAll();
@@ -31,12 +28,13 @@ router.post('/:id',async(req,res)=>{
         const product = items.map((item)=>{
             return item.get({plain:true});
         })
+       console.log(product);
         // const cart = await Cart.create(product);
         const {product_name,price,thumbnail,stock} = product[0];
         const cart = await Cart.create({product_name: product_name,price:price,thumbnail:thumbnail,stock:stock});
         console.log(cart);
     
-    res.render("carts");
+
     } catch (error) {
         console.log(error);
     }
@@ -60,19 +58,32 @@ router.get('/signup', async (req, res) => {
 router.get('/carts', async (req, res) => {
     try {
         const carts = await Cart.findAll();
+        let totalPrice = 0;
         const cartItems = carts.map((cart)=>{
+            totalPrice = totalPrice + parseInt(cart.price);
             return cart.get({plain:true})
          });
-        res.render('carts',{cartItems});
+        //res.render('carts',{cartItems});
+        res.render('carts', {
+            cartItems: cartItems,
+            totalPrice: totalPrice
+        })
     } catch(err) {
         res.status(500)
     }
 });
+router.delete('/carts/:id',async(req,res) => {
+    // console.log("Inside delete route");
+    let myid = req.params.id;
+    // console.log(id);
+    const remove = await Cart.destroy({where:{id:myid}});
+    
+})
 
+router.post('/create-checkout-session/', async (req, res) => {
 
-router.post('/create-checkout-session/:id', async (req, res) => {
-
-    const items = await Product.findAll({where:{id:req.params.id}});
+    const items = await Cart.findAll();
+    console.log(items);
    const line_items = items.map((item)=>{
     return {
         
@@ -80,7 +91,7 @@ router.post('/create-checkout-session/:id', async (req, res) => {
               currency: 'usd',
               product_data: {
                 name: item.product_name,
-                description: item.description,
+                images: [item.thumbnail],
                 metadata:{
                     id: item.id,
                 }
