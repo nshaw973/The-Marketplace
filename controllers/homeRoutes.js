@@ -9,23 +9,22 @@ const stripe = require('stripe')(
 //Express
 
 router.get('/', async (req, res) => {
-  try {
-    const productData = await Product.findAll();
-    console.log(productData);
-    const products = productData.map((products) => {
-      return products.get({ plain: true });
-    });
-    const script = {
-      indexScript: './js/index.js',
-    };
-    console.log(products);
-    res.render('homepage', {
-      ...products,
-      ...script,
-    });
-  } catch (err) {
-    res.status(500);
-  }
+    try {
+        const productData = await Product.findAll();
+        console.log(productData);
+        const products = productData.map((products)=>{
+           return products.get({plain:true})
+        });
+        const script = {
+            "script": "./js/index.js",
+        };
+        console.log(products);
+        res.render('homepage',{
+            ...products, ...script
+        });
+    } catch(err) {
+        res.status(500)
+    }
 });
 router.post('/:id',async(req,res)=>{
     
@@ -47,13 +46,13 @@ router.post('/:id',async(req,res)=>{
     }
 })
 router.get('/login', async (req, res) => {
-  try {
-    res.render('login', {
-      loginScript: '/js/login.js',
-    });
-  } catch (err) {
-    res.status(500);
-  }
+    try {
+        res.render('login',{
+            "script": "/js/login.js",
+        });
+    } catch(err) {
+        res.status(500)
+    }
 });
 
 router.get('/signup', async (req, res) => {
@@ -75,8 +74,9 @@ router.get('/carts', async (req, res) => {
         //res.render('carts',{cartItems});
         res.render('carts', {
             cartItems: cartItems,
-            totalPrice: totalPrice
-        })
+            totalPrice: totalPrice,
+            "script": "/js/cartDisplay.js"
+        });
     } catch(err) {
         res.status(500)
     }
