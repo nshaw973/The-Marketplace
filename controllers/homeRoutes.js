@@ -13,14 +13,18 @@ router.get('/',  async (req, res) => {
     try {
         const productData = await Product.findAll();
         const products = productData.map((products)=>{
-           return products.get({plain:true})
+          return products.get({plain:true})
         });
+        for(let i = 0; i < products.length ; i++){
+          products[i].discountPercentage = Math.floor(products[i].discountPercentage);
+          products[i].listPrice = Math.floor(products[i].price/(1-(products[i].discountPercentage/100)));
+        }
         res.render('homepage',{
             products,
-          loggedIn: req.session.loggedIn,
-          imagePath: req.session.imagePath,
-           loggedIn: req.session.loggedIn,
-           "script": "js/cartscript.js"
+            loggedIn: req.session.loggedIn,
+            imagePath: req.session.imagePath,
+            loggedIn: req.session.loggedIn,
+            "script": "js/cartscript.js"
         });
     } catch(err) {
         res.status(500);

@@ -1,4 +1,4 @@
-console.log("cartscript")
+
 
 const addButton = document.querySelectorAll('.addToCartButton');
 for(let i=0;i<addButton.length;i++){
