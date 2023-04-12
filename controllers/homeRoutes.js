@@ -20,25 +20,29 @@ router.get('/', async (req, res) => {
         };
         console.log(req.session.loggedIn)
         res.render('homepage',{
+           products,
           loggedIn: req.session.loggedIn,
           imagePath: req.session.imagePath,
-            ...products, ...script
+
         });
     } catch(err) {
-        res.status(500)
+        res.status(500);
     }
 });
-router.post('/:id',async(req,res)=>{
+router.post('/',async(req,res)=>{
     
     try {
         
-        const items =  await Product.findAll({where:{id:req.params.id}});
+        const items =  await Product.findAll({where:{id:req.body.id}});
         const product = items.map((item)=>{
             return item.get({plain:true});
         })
-        // const cart = await Cart.create(product);
-        const {product_name,price,thumbnail,stock} = product[0];
-        const cart = await Cart.create({product_name: product_name,price:price,thumbnail:thumbnail,stock:stock});
+
+        console.log(product);
+        const [{product_name,price,thumbnail,stock}] = product;
+       console.log(product_name);
+        await Cart.create({product_name: product_name,price:price,thumbnail:thumbnail,stock:stock}); 
+       
     } catch (error) {
         console.log(error);
     }
@@ -69,6 +73,7 @@ router.get('/carts', async (req, res) => {
             totalPrice = totalPrice + parseInt(cart.price);
             return cart.get({plain:true})
          });
+         console.log(cartItems);
         //res.render('carts',{cartItems});
         res.render('carts', {
             imagePath: req.session.imagePath,
@@ -81,19 +86,53 @@ router.get('/carts', async (req, res) => {
         res.status(500)
     }
 });
+router.delete('/carts',async(req,res)=>{
+    try {
+       await Cart.destroy({truncate:true, cascade:false, });
+      
+    } catch (error) {
+        console.error(error);
+    }
+    
+})
 router.delete('/carts/:id',async(req,res) => {
     // console.log("Inside delete route");
     let myid = req.params.id;
     // console.log(id);
+    
     const remove = await Cart.destroy({where:{id:myid}});
+
     
 })
 
+router.post('/purchase',async (req,res)=>{
+    
+    let total = 0;
+    req.body.items.forEach(async function(item){
+        const cartTotal = await Cart.findAll({where:{id:item.id}});
+        const serialize = cartTotal.map((item)=> item.get({plain:true}));
+        const [{price}] = serialize;
+        total += price *item.quantity;
+    })
+    stripe.charges.create({
+        amount:total,
+        source: req.body.stripeTokenId,
+        currency: 'usd'
+    }).then(function(){
+        console.log("charges Succesfully")
+    }).catch(function(){
+        console.log('charges fail');
+    })
+})
 
-router.post('/create-checkout-session/', async (req, res) => {
+router.post('/create-checkout-session', async (req, res) => {
 
     const items = await Cart.findAll();
-   const line_items = items.map((item)=>{
+
+    console.log(items);
+    const serialize = items.map((item)=> item.get({plain:true}));
+   const line_items = serialize.map((item)=>{
+
     return {
         
             price_data: {
@@ -105,31 +144,33 @@ router.post('/create-checkout-session/', async (req, res) => {
                     id: item.id,
                 }
               },
-              unit_amount: item.price,
+              unit_amount: item.price*100,
             },
-            quantity: item.stock,
+            quantity: 1,
           
     }
    })
    
-
+   
     const session = await stripe.checkout.sessions.create({
-      line_items,
+        line_items,
+      
       mode: 'payment',
       success_url: 'http://localhost:3001/success',
-      cancel_url: 'http://localhost:3001/',
+      cancel_url: 'http://localhost:3001/carts',
     });
   
     res.redirect(303, session.url);
   });
+
 router.get('/success', async (req, res) => {
-  try {
-    res.render('sucess');
-  } catch (err) {
-    res.status(500);
-  }
+    try {
+        res.render('success');
+    } catch(err) {
+        res.status(500)
+    }
 });
-// product page
+
 
 /* Test Route for account dashboard */
 router.get('/account', withAuth, async (req, res) => {
