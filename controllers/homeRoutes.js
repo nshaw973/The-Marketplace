@@ -18,7 +18,6 @@ router.get('/', async (req, res) => {
         const script = {
             "script": "./js/index.js",
         };
-        console.log(req.session.loggedIn)
         res.render('homepage',{
             products,
           loggedIn: req.session.loggedIn,
@@ -38,9 +37,7 @@ router.post('/',async(req,res)=>{
             return item.get({plain:true});
         })
 
-        console.log(product);
         const [{product_name,price,thumbnail,stock}] = product;
-       console.log(product_name);
         await Cart.create({product_name: product_name,price:price,thumbnail:thumbnail,stock:stock}); 
        
     } catch (error) {
@@ -73,7 +70,6 @@ router.get('/carts', async (req, res) => {
             totalPrice = totalPrice + parseInt(cart.price);
             return cart.get({plain:true})
          });
-         console.log(cartItems);
         //res.render('carts',{cartItems});
         res.render('carts', {
             imagePath: req.session.imagePath,
@@ -96,9 +92,7 @@ router.delete('/carts',async(req,res)=>{
     
 })
 router.delete('/carts/:id',async(req,res) => {
-    // console.log("Inside delete route");
     let myid = req.params.id;
-    // console.log(id);
     
     const remove = await Cart.destroy({where:{id:myid}});
 
@@ -129,7 +123,6 @@ router.post('/create-checkout-session', async (req, res) => {
 
     const items = await Cart.findAll();
 
-    console.log(items);
     const serialize = items.map((item)=> item.get({plain:true}));
    const line_items = serialize.map((item)=>{
 

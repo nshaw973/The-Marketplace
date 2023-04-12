@@ -9,7 +9,6 @@ search.get('/', async (req, res) => {
     try {
         if(req.query.term){
             const data = await pollDatabase(req.query.term);
-            console.log(data.products);
             if(data.products.length === 0){
                 res.render('search',{
                     "searchScript": "/js/search.js",

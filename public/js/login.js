@@ -2,8 +2,6 @@
 const searchForm = $("#search-input");
 const searchButton = $("#search-button");
 
-console.log("login script");
-
 async function redirect(myParams){
     // Convert the parameter object into a query string
     var paramString = $.param(myParams);
@@ -41,7 +39,6 @@ document
   .addEventListener('submit', loginFormHandler);
 
 searchButton.on('click',() => {
-    console.log('Button clicked!');
     var searchTerm = searchForm.val().trim().toLowerCase();
     if(searchTerm === ''){
         var myParams = { term: 'all'}; 

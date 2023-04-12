@@ -2,11 +2,8 @@
 const searchForm = $("#search-input");
 const searchButton = $("#search-button");
 
-console.log("search script")
-
 searchButton.on('click',(event) => {
     event.preventDefault();
-    console.log('Button clicked!');
     var searchTerm = searchForm.val().trim().toLowerCase();
     if(searchTerm === ''){
         var myParams = { term: 'all'}; 
