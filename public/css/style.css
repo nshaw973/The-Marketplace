@@ -3219,6 +3219,10 @@ html {
   visibility: hidden;
 }
 
+.fixed {
+  position: fixed;
+}
+
 .absolute {
   position: absolute;
 }
@@ -3227,8 +3231,12 @@ html {
   right: 0px;
 }
 
-.top-20 {
-  top: 5rem;
+.top-0 {
+  top: 0px;
+}
+
+.z-10 {
+  z-index: 10;
 }
 
 .m-0 {
@@ -3789,6 +3797,11 @@ html {
 .text-gray-dark {
   --tw-text-opacity: 1;
   color: rgb(39 52 68 / var(--tw-text-opacity));
+}
+
+.text-graygreen {
+  --tw-text-opacity: 1;
+  color: rgb(128 157 127 / var(--tw-text-opacity));
 }
 
 .underline {
