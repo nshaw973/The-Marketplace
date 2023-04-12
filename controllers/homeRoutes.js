@@ -122,6 +122,7 @@ router.post('/create-checkout-session/', async (req, res) => {
   
     res.redirect(303, session.url);
   });
+  
 router.get('/success', async (req, res) => {
   try {
     res.render('sucess');
