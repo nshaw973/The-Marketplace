@@ -1,4 +1,4 @@
-<div class="hero h-auto md:h-96" style="background-image: url(/images/merchandise.png);">
+<div class="hero h-auto mb-6 md:mb-12 md:h-96" style="background-image: url(/images/merchandise.png);">
     <div class="hero-overlay bg-opacity-70"></div>
     <div class="hero-content text-center">
         <div class="max-w-md">
@@ -28,8 +28,8 @@
                 <label for="{{generateId 'price'}}">Price: ${{product.price}}</label>
                 <input class = "w-0 h-0" type="text" name="price" id="{{generateId 'price'}}">
             </p>
-            {{!-- <p class = "text-xs md:text-lg line-through">{{this.listPrice}}</p>
-            <p class = "text-xs md:text-lg">{{this.discount}}</p> --}}
+                    <p class = "text-xs md:text-lg line-through">List Price: ${{product.listPrice}}</p>
+                    <p class = "text-xs md:text-lg">{{product.discountPercentage}} % off!</p>
             <div class = "card-actions justify-end">
                 <button class = "btn btn-accent btn-sm carts addToCartButton" id = "add-to-cart" onclick = "addToCart()" data-id="{{product.id}}">Add to Cart</button>
             </div>
@@ -37,34 +37,3 @@
     </div>
 {{/each}}
 </div>
-
-{{!-- <script src='js/cartscript.js'></script> --}}
-
-{{!-- 
-   <div class = "grid gap-4 grid-cols-3 grid-rows-3">
-   {{#each products as |product|}}
-    <div class="card" style="width: 18rem;" id="products">
-
-   
-  <img src="{{product.thumbnail}}" class="card-img-top" alt="productPicture">
-  
-  <div class="card-body">
-
-
-
-    <label for="{{generateId 'name'}}">{{product.product_name}}</label>
-    <input type="text" name="name" id="{{generateId 'name'}}">
-    <label for="{{generateId 'price'}}">Price: ${{product.price}}</label>
-    <input type="text" name="price" id="{{generateId 'price'}}">
-    <label for="{{generateId 'description'}}">{{product.description}}</label>
-    <input type="text" name="description" id="{{generateId 'description'}}">
-    <label for="{{generateId 'stock'}}">Stock: {{product.stock}}</label>
-    <input type="text" name="stock" id="{{generateId 'stock'}}">
-    
-    
-        <button type="submit" onclick="addToCart()" class =" carts bg-yellow border border-yellow text-white px-8 rounded-r-md hover:bg-transparent hover:text-yellow transition addToCartButton" data-id={{product.id}}>Add to Cart</button>
-</div>
-   </div>
-   {{/each}}
-   </div>
-    --}}
