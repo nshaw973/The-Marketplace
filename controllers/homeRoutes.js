@@ -23,7 +23,7 @@ router.get('/', async (req, res) => {
            products,
           loggedIn: req.session.loggedIn,
           imagePath: req.session.imagePath,
-, loggedIn: req.session.loggedIn
+           loggedIn: req.session.loggedIn
         });
     } catch(err) {
         res.status(500);
