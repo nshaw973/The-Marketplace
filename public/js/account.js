@@ -1,6 +1,7 @@
 const searchForm = $('#search-input');
 const searchButton = $('#search-button');
 
+
 console.log('account script');
 
 searchButton.on('click', () => {
@@ -46,3 +47,4 @@ const updateUser = async (event) => {
 
 const updateButton = document.querySelector('#update-user');
 updateButton.addEventListener('click', updateUser);
+
