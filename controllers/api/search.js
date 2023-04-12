@@ -12,13 +12,11 @@ search.get('/', async (req, res) => {
             console.log(data.products);
             if(data.products.length === 0){
                 res.render('search',{
-                    "searchScript": "/js/search.js",
                     "searchResults": data.products,
                     "resultAvailiable": false
                 });
             } else {
                 res.render('search',{
-                    "searchScript": "/js/search.js",
                     "searchResults": data.products,
                     "resultAvailable": true
                 });

@@ -15,9 +15,6 @@ router.get('/', async (req, res) => {
         const products = productData.map((products)=>{
            return products.get({plain:true})
         });
-        const script = {
-            "script": "./js/index.js",
-        };
         console.log(req.session.loggedIn)
         res.render('homepage',{
            products,
