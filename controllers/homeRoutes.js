@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const { Console } = require('console');
 const { User, Product, Cart, Profileimage } = require('../models');
 const withAuth = require('../utils/auth');
 const fs = require('fs');
@@ -11,16 +12,18 @@ const stripe = require('stripe')(
 router.get('/', async (req, res) => {
     try {
         const productData = await Product.findAll();
-        console.log(productData);
         const products = productData.map((products)=>{
            return products.get({plain:true})
         });
         const script = {
             "script": "./js/index.js",
         };
-        console.log(products);
+        console.log(req.session.loggedIn)
         res.render('homepage',{
-           products
+           products,
+          loggedIn: req.session.loggedIn,
+          imagePath: req.session.imagePath,
+
         });
     } catch(err) {
         res.status(500);
@@ -34,15 +37,12 @@ router.post('/',async(req,res)=>{
         const product = items.map((item)=>{
             return item.get({plain:true});
         })
+
         console.log(product);
         const [{product_name,price,thumbnail,stock}] = product;
        console.log(product_name);
-        await Cart.create({product_name: product_name,price:price,thumbnail:thumbnail,stock:stock});
-
-        
+        await Cart.create({product_name: product_name,price:price,thumbnail:thumbnail,stock:stock}); 
        
-       
-
     } catch (error) {
         console.log(error);
     }
@@ -76,6 +76,8 @@ router.get('/carts', async (req, res) => {
          console.log(cartItems);
         //res.render('carts',{cartItems});
         res.render('carts', {
+            imagePath: req.session.imagePath,
+            loggedIn: req.session.loggedIn,
             cartItems: cartItems,
             totalPrice: totalPrice,
             "script": "/js/cartDisplay.js"
@@ -126,9 +128,11 @@ router.post('/purchase',async (req,res)=>{
 router.post('/create-checkout-session', async (req, res) => {
 
     const items = await Cart.findAll();
+
     console.log(items);
     const serialize = items.map((item)=> item.get({plain:true}));
    const line_items = serialize.map((item)=>{
+
     return {
         
             price_data: {
@@ -158,8 +162,7 @@ router.post('/create-checkout-session', async (req, res) => {
   
     res.redirect(303, session.url);
   });
-  
-  
+
 router.get('/success', async (req, res) => {
     try {
         res.render('success');
@@ -174,14 +177,16 @@ router.get('/account', withAuth, async (req, res) => {
   try {
     const userData = await User.findByPk(req.session.userId, {
       attributes: { exclude: ['password'] },
-      include: [{ model: Profileimage }],
+      include: [{ model: Profileimage }]
     });
 
+    let imagePath;
     const user = userData.get({ plain: true });
-    console.log(user)
-
-    const imagePath = `${user.profile_image.filename}.${user.profile_image.mimetype.split('/')[1]}`;
-    console.log(imagePath)
+    if (user.profile_image === null) {
+      imagePath = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'
+    } else {
+      imagePath = `uploads/${user.profile_image.filename}.${user.profile_image.mimetype.split('/')[1]}`;
+    }
 
     res.render('account', {
       ...user,
