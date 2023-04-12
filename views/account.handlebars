@@ -1,4 +1,39 @@
-<h1>Account testing by Nathan</h1>
+<section class='bg-gray-100 p-8 rounded-lg shadow-lg account-body'>
+  <div class='account-options'>
+    <h1 class='my-4 text-2xl font-bold text-center'>Welcome {{name}}!</h1>
+    <img src='{{imagePath}}' alt='{{name}}-profilepic' class='profile-image' />
 
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script src="{{accountScript}}"></script>
+    {{!-- Change Profile Pic --}}
+    <h1>Upload New Profile Picture: </h1>
+    <div class='upload-pic account-containers'>
+      <form
+        action='/api/image/upload'
+        method='POST'
+        enctype='multipart/form-data'
+        class='mb-8'
+      >
+        <label for='image' class='block mb-2 font-medium text-lg'>Select an
+          image to upload:</label>
+        <input type='file' id='image' name='image' class='mb-2' />
+        <button
+          type='submit'
+          class='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
+        >
+          Upload
+        </button>
+      </form>
+    </div>
+    {{!-- Change Users Name --}}
+    <h1>Change Name: </h1>
+    <div class="account-containers">
+      <form method='post' action='/api/account/name'>
+        <label for='new_name'>New Name:</label>
+        <input type='text' id='name' name='name' />
+        <button type='submit'>Update</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script src='https://code.jquery.com/jquery-3.6.4.min.js'></script>
+<script src='{{accountScript}}'></script>

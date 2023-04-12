@@ -3113,10 +3113,6 @@ html {
   visibility: hidden;
 }
 
-.fixed {
-  position: fixed;
-}
-
 .absolute {
   position: absolute;
 }
@@ -3125,12 +3121,8 @@ html {
   right: 0px;
 }
 
-.top-0 {
-  top: 0px;
-}
-
-.z-10 {
-  z-index: 10;
+.top-20 {
+  top: 5rem;
 }
 
 .m-0 {
@@ -3145,6 +3137,22 @@ html {
   margin-left: 0.75rem;
   margin-right: 0.75rem;
 }
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.my-2 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.my-6 {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
 
 .mb-4 {
   margin-bottom: 1rem;
@@ -3178,6 +3186,14 @@ html {
   height: 0px;
 }
 
+.h-52 {
+  height: 13rem;
+}
+
+.h-72 {
+  height: 18rem;
+}
+
 .h-auto {
   height: auto;
 }
@@ -3186,12 +3202,20 @@ html {
   height: 100%;
 }
 
+.h-screen {
+  height: 100vh;
+}
+
 .w-0 {
   width: 0px;
 }
 
 .w-10 {
   width: 2.5rem;
+}
+
+.w-16 {
+  width: 4rem;
 }
 
 .w-2\/5 {
@@ -3417,6 +3441,10 @@ html {
   padding: 0.5rem;
 }
 
+.p-3 {
+  padding: 0.75rem;
+}
+
 .px-1 {
   padding-left: 0.25rem;
   padding-right: 0.25rem;
@@ -3425,6 +3453,11 @@ html {
 .px-10 {
   padding-left: 2.5rem;
   padding-right: 2.5rem;
+}
+
+.px-12 {
+  padding-left: 3rem;
+  padding-right: 3rem;
 }
 
 .px-2 {
@@ -3440,6 +3473,11 @@ html {
 .px-8 {
   padding-left: 2rem;
   padding-right: 2rem;
+}
+
+.py-10 {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
 }
 
 .py-2 {
@@ -3501,6 +3539,10 @@ html {
 
 .pt-5 {
   padding-top: 1.25rem;
+}
+
+.text-center {
+  text-align: center;
 }
 
 .text-right {
@@ -3724,6 +3766,11 @@ html {
     visibility: visible;
   }
 
+  .md\:mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   .md\:flex {
     display: flex;
   }
@@ -3845,4 +3892,64 @@ html {
     font-size: 2.25rem;
     line-height: 2.5rem;
   }
+}
+
+}
+
+
+/* Custom CSS */
+.profile-image {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  box-shadow: 0 0 1px #fff, 0 0 2px #fff, 0 0 3px #fff, 0 0 4px #00ff00, 0 0 7px #00ff00, 0 0 8px #00ff00, 0 0 10px #00ff00;
+  margin: 3%;
+}
+
+.account-body {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.account-options {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  box-shadow: -5px 0 5px rgba(0, 0, 0, 0.5), 5px 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.account-options div {
+  padding: 2%;
+  display: flex;
+  width: 100%;
+  margin-top: 2%;
+  border-bottom: solid black 2px;
+  text-indent: 3%;
+
+}
+
+.account-containers {
+  border-bottom: black solid 2px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.profilepic-container {
+  width: 200px;
+  height: 200px;
+  border: solid black 1px;
+}
+
+.upload-pic form {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.upload-pic form input {
+width: 60%;
+
 }
