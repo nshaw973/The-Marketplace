@@ -17,9 +17,9 @@ router.get('/', async (req, res) => {
         const script = {
             "script": "./js/index.js",
         };
-        console.log(products);
+       
         res.render('homepage',{
-            ...products, ...script
+            ...products, ...script, loggedIn: req.session.loggedIn
         });
     } catch(err) {
         res.status(500)
@@ -33,11 +33,11 @@ router.post('/:id',async(req,res)=>{
         const product = items.map((item)=>{
             return item.get({plain:true});
         })
-       console.log(product);
+       
         // const cart = await Cart.create(product);
         const {product_name,price,thumbnail,stock} = product[0];
         const cart = await Cart.create({product_name: product_name,price:price,thumbnail:thumbnail,stock:stock});
-        console.log(cart);
+        
     
 
     } catch (error) {
@@ -74,7 +74,8 @@ router.get('/carts', withAuth, async (req, res) => {
         res.render('carts', {
             cartItems: cartItems,
             totalPrice: totalPrice,
-            "script": "/js/cartDisplay.js"
+            "script": "/js/cartDisplay.js",
+            loggedIn: req.session.loggedIn
         });
     } catch(err) {
         res.status(500)
@@ -92,7 +93,7 @@ router.delete('/carts/:id',async(req,res) => {
 router.post('/create-checkout-session/', async (req, res) => {
 
     const items = await Cart.findAll();
-    console.log(items);
+    
    const line_items = items.map((item)=>{
     return {
         
@@ -123,8 +124,6 @@ router.post('/create-checkout-session/', async (req, res) => {
     res.redirect(303, session.url);
   });
 
-  res.redirect(303, session.url);
-});
 router.get('/success', async (req, res) => {
   try {
     res.render('sucess');

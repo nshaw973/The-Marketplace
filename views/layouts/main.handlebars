@@ -19,7 +19,11 @@
                     </div>
                 </label>
                 <div class = " flex justify-evenly items-center w-150 px-2 md:w-96">
+                    {{#if loggedIn}}
+                    <a class = "text-xl font-semibold invisible md:visible w-0 md:w-auto lg:text-2xl" href="/login" id="logout-link">Logout</a>
+                    {{else}}
                     <a class = "text-xl font-semibold invisible md:visible w-0 md:w-auto lg:text-2xl" href="/login">Login</a>
+                    {{/if}}
                     <a class = "text-xl font-semibold invisible md:visible w-0 md:w-auto lg:text-2xl" href="/orders">Orders</a>
                     <div class="btn btn-ghost btn-circle md:justify-start w-10 mx-3" onclick = "window.location.href='/carts'">
                         <img src="http://localhost:3001/images/logo-cart.png" />
@@ -80,5 +84,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script src="{{script}}"></script>
     <script src="/js/navbar.js"></script>
+    <script src="/js/logout.js"></script>
+    
 </body>
 </html>
