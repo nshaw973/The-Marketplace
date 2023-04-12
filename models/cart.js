@@ -30,6 +30,7 @@ Cart.init(
             type: DataTypes.INTEGER(255),
             allowNull: false,
         },
+
         
         
     },

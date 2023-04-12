@@ -2,6 +2,42 @@ let checkout = document.getElementById("checkout");
 let checdiv = document.getElementById("chec-div");
 let flag3 = false;
 let cartItemsContainer=document.querySelectorAll('.cartItemsContainer');
+let subTotal = document.querySelector('.subTotal');
+// let select = document.querySelectorAll('.quantitySelect');
+// let cartPrices = document.querySelectorAll('.cartPriceLike');
+// const quantityUpdate = ()=>{
+//     for(let i=0;i<select.length;i++){
+//         var options = select[i].querySelectorAll('option');
+//         var cartPrice = cartPrices[i];
+       
+//         select[i].addEventListener('click',()=>{
+           
+//                 const selectedOption = options[select[i].selectedIndex];
+//                 const currentValue = selectedOption.value;
+//                 if(currentValue==2){
+//                     var newprice = parseFloat(cartPrice.innerText.replace('$',''));
+//                     const double = newprice*2;
+//                     cartPrices[i].innerHTML = `$${double}`;
+//                     console.log(cartPrice.innerText);
+                
+//                 }else if(currentValue==3){
+//                     var newprice = parseFloat(cartPrice.innerText.replace('$',''));
+//                     const triple = newprice*3;
+//                     cartPrices[i].innerHTML = `$${triple}`;
+//                     console.log(cartPrice.innerText);
+//                 }else{
+//                     cartPrices[i].innerHTML= cartPrice.innerText;
+//                 }
+
+             
+                  
+            
+           
+       
+//         })
+       
+//     }
+// }
 let stripeHandler = StripeCheckout.configure({
     key:"pk_test_51MtMgCFsxalzdvcduDxKPgBw2UEJsP3wscuq4tYhrIIutomjwtV80ZtbTmfPvCCULH3iQ9UUOLdpB2AWlFqX05E600c5YTZaCv",
     local: 'en',
@@ -93,3 +129,4 @@ for(let i=0;i<cartItemsContainer.length;i++){
 }
 
 removeItem();
+
