@@ -1,9 +1,10 @@
+
+
 const addButton = document.querySelectorAll('.addToCartButton');
 for(let i=0;i<addButton.length;i++){
     let specificButton = addButton[i];
     specificButton.addEventListener('click',()=>{
         const id = specificButton.dataset.id;
-        console.log(id);
         const response = fetch('/',{
             method:"POST",
             headers:{

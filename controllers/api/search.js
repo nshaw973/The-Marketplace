@@ -8,17 +8,24 @@ const pollDatabase = require('../../utils/polling.js');
 search.get('/', async (req, res) => {
     try {
         if(req.query.term){
-            const data = await pollDatabase(req.query.term);
-            console.log(data.products);
-            if(data.products.length === 0){
+            const data = await pollDatabase(req.query);
+            if(data.length === 0){
                 res.render('search',{
-                    "searchResults": data.products,
-                    "resultAvailiable": false
+                    "products": data,
+                    "resultAvailiable": false,
+                    "script": "/js/cartscript.js"
                 });
             } else {
+                for(let i = 0; i < data.length ; i++){
+                    data[i].discountPercentage = Math.floor(data[i].discountPercentage);
+                    data[i].listPrice = Math.floor(data[i].price/(1-(data[i].discountPercentage/100)));
+                }
                 res.render('search',{
-                    "searchResults": data.products,
-                    "resultAvailable": true
+                    imagePath: req.session.imagePath,
+                    loggedIn: req.session.loggedIn,
+                    "products": data,
+                    "resultAvailable": true,
+                    "script": "/js/cartscript.js",
                 });
             };
         } else{

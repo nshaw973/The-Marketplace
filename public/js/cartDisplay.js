@@ -42,7 +42,6 @@ let stripeHandler = StripeCheckout.configure({
     key:"pk_test_51MtMgCFsxalzdvcduDxKPgBw2UEJsP3wscuq4tYhrIIutomjwtV80ZtbTmfPvCCULH3iQ9UUOLdpB2AWlFqX05E600c5YTZaCv",
     local: 'en',
     token: function(token){
-        console.log(token);
         var items = [];
         for(let i=0;i<cartItemsContainer.length;i++){
             var cartItem = cartItemsContainer[i];
@@ -110,9 +109,11 @@ const removeItem = ()=>{
     $(document).on("click", ".cart-remove",  async function(e){
         e.preventDefault();
         let id = $(this).attr("data-id");
+
        
        try {
          await fetch(`/carts/${id}`, {
+
             method: 'DELETE'
           });
           console.log("hello");
@@ -130,12 +131,12 @@ const payment = ()=>{
   })
 for(let i=0;i<cartItemsContainer.length;i++){
     cartItem = cartItemsContainer[i];
-    console.log(cartItem.dataset.id);
 }
   
 }
 
 removeItem();
+
 
 
 
@@ -161,6 +162,7 @@ async function redirect(myParams){
     // Convert the parameter object into a query string
     var paramString = $.param(myParams);
     // Navigate to the new URL with the query string appended
-    window.location.href = 'http://localhost:3001/api/search?' + paramString;
+    window.location.href = '/api/search?' + paramString;
 }
+
 

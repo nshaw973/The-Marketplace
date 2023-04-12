@@ -13,17 +13,18 @@ router.get('/',  async (req, res) => {
     try {
         const productData = await Product.findAll();
         const products = productData.map((products)=>{
-           return products.get({plain:true})
+          return products.get({plain:true})
         });
-        const script = {
-            "script": "./js/index.js",
-        };
-       
+        for(let i = 0; i < products.length ; i++){
+          products[i].discountPercentage = Math.floor(products[i].discountPercentage);
+          products[i].listPrice = Math.floor(products[i].price/(1-(products[i].discountPercentage/100)));
+        }
         res.render('homepage',{
             products,
-          loggedIn: req.session.loggedIn,
-          imagePath: req.session.imagePath,
-           loggedIn: req.session.loggedIn
+            loggedIn: req.session.loggedIn,
+            imagePath: req.session.imagePath,
+            loggedIn: req.session.loggedIn,
+            "script": "js/cartscript.js"
         });
     } catch(err) {
         res.status(500);
@@ -37,11 +38,13 @@ router.post('/',async(req,res)=>{
         const product = items.map((item)=>{
             return item.get({plain:true});
         })
-
-        console.log(product);
+        
         const [{product_name,price,thumbnail,stock}] = product;
-       console.log(product_name);
+
         await Cart.create({product_name: product_name,price:price,thumbnail:thumbnail,stock:stock, }); 
+
+        await Cart.create({product_name: product_name,price:price,thumbnail:thumbnail,stock:stock}); 
+
        
     } catch (error) {
         console.log(error);
@@ -73,7 +76,6 @@ router.get('/carts', withAuth, async (req, res) => {
             totalPrice = totalPrice + parseInt(cart.price);
             return cart.get({plain:true})
          });
-         console.log(cartItems);
         //res.render('carts',{cartItems});
         res.render('carts', {
             imagePath: req.session.imagePath,
@@ -98,9 +100,7 @@ router.delete('/carts',async(req,res)=>{
     
 })
 router.delete('/carts/:id',async(req,res) => {
-    // console.log("Inside delete route");
     let myid = req.params.id;
-    // console.log(id);
     
    await Cart.destroy({where:{id:myid}});
 
@@ -131,7 +131,6 @@ router.post('/create-checkout-session', async (req, res) => {
 
     const items = await Cart.findAll();
 
-    console.log(items);
     const serialize = items.map((item)=> item.get({plain:true}));
    const line_items = serialize.map((item)=>{
 
