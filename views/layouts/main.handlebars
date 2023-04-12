@@ -10,7 +10,7 @@
     <link rel='stylesheet' href='/css/style.css' />
   </head>
   <body>
-    <header>
+    <header style="border-bottom: 2px black solid;">
       <nav class='navbar flex-wrap'>
         <div class='flex justify-between w-full py-2 px-2'>
           <label
@@ -127,10 +127,12 @@
     >
       <div class='grid grid-flow-col gap-4'>
         <a class='link link-hover font-semibold text-lg' href='/'>Home</a>
+        {{#if loggedIn}}
         <a
           class='link link-hover font-semibold text-lg'
           href='/account'
         >Account</a>
+        {{/if}}
         <a class='link link-hover font-semibold text-lg' href='/carts'>Cart</a>
         <a
           class='link link-hover font-semibold text-lg'
