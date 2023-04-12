@@ -15,6 +15,7 @@ router.post('/', async (req, res) => {
       req.session.email = newUser.email;
       req.session.loggedIn = true;
       req.session.has_pic = newUser.has_pic;
+      req.session.imagePath = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';
 
       res.json(newUser);
     });
@@ -46,6 +47,8 @@ router.post('/login', async (req, res) => {
       return;
     }
 
+    let imagePath;
+    
     if (user.profile_image === null) {
       imagePath =
         'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';
