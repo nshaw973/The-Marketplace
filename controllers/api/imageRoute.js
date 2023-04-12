@@ -3,10 +3,19 @@ const { User, Profileimage } = require('../../models');
 const fs = require('fs');
 const router = require('express').Router();
 
-// Limits filesize to 2mbs
+// Limits filesize to 1mb
+// Also only allows certain filetypes
 const upload = multer({
   dest: 'uploads/',
   limits: { fileSize: 1024 * 1024 },
+  fileFilter: (req, file, cb) => {
+    const allowedMimes = ['image/jpeg', 'image/png', 'image/gif'];
+    if (allowedMimes.includes(file.mimetype)) {
+      cb(null, true);
+    } else {
+      cb(new Error('Invalid file type. Only JPEG, PNG and GIF files are allowed.'));
+    }
+  }
 });
 
 // Uploads the users profile pic
