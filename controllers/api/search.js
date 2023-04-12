@@ -8,7 +8,7 @@ const pollDatabase = require('../../utils/polling.js');
 search.get('/', async (req, res) => {
     try {
         if(req.query.term){
-            const data = await pollDatabase(req.query.term);
+            const data = await pollDatabase(req.query);
             if(data.length === 0){
                 res.render('search',{
                     "products": data,
