@@ -107,26 +107,6 @@ router.delete('/carts/:id',async(req,res) => {
     
 })
 
-// router.post('/purchase',async (req,res)=>{
-    
-//     let total = 0;
-//     req.body.items.forEach(async function(item){
-//         const cartTotal = await Cart.findAll({where:{id:item.id}});
-//         const serialize = cartTotal.map((item)=> item.get({plain:true}));
-//         const [{price}] = serialize;
-//         total += price *item.quantity;
-//     })
-//     stripe.charges.create({
-//         amount:total,
-//         source: req.body.stripeTokenId,
-//         currency: 'usd'
-//     }).then(function(){
-//         console.log("charges Succesfully")
-//     }).catch(function(){
-//         console.log('charges fail');
-//     })
-// })
-
 router.post('/create-checkout-session', async (req, res) => {
 
     const items = await Cart.findAll();
