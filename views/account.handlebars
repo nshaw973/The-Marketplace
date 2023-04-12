@@ -1,19 +1,23 @@
-<section class='bg-gray-100 p-8 rounded-lg shadow-lg account-body' style="height: fit-content;">
+<section class=' p-8 rounded-lg shadow-lg account-body' style="height: fit-content;">
   <div class='account-options'>
       <h1 class='my-4 text-2xl font-bold text-center'>Welcome {{name}}!</h1>
       <div style="width:100%; display:flex; justify-content:center;">
         <img src='{{imagePath}}' alt='{{name}}-profilepic' class='profile-image' />
       </div>
-      <h1 class="w-full text-center text-xl font-bold text-gray-700">Email: {{email}}</h1>
-      <h1 class="w-full text-center text-xl font-bold text-blue-700 logged-user" user-id="{{user_id}}">Username: {{name}}</h1>
-      <h1 class="w-full text-center text-xl font-bold text-gray-700">Member Since: {{format_date user_created}}</h1>
+      {{!-- User Info --}}
+      <div style="display:flex; flex-direction:column; ">
+        <h1 class="w-full text-center text-xl font-bold ">Email: {{email}}</h1>
+        <h1 class="w-full text-center text-xl font-bold logged-user" user-id="{{user_id}}">Username: {{name}}</h1>
+        <h1 class="w-full text-center text-xl font-bold ">Member Since: {{format_date user_created}}</h1>
+      </div>
 
  <!-- Change Profile Pic -->
 <h1 class="text-2xl font-bold mb-4">Upload New Profile Picture:</h1>
 <div class="account-containers">
   <form action="/api/image/upload" method="POST" enctype="multipart/form-data" class="form-container flex flex-col items-center">
-    <label for="image" class="text-lg font-medium mb-2 text-center"></label>
-    <input type="file" id="image" name="image" class="p-2 border border-gray-400 rounded-md mb-4" />
+    <label for="image" class="text-sm font-medium mb-2 text-center">Only JPEG and PNG formats, max size 1mb</label>
+    <input type="file" id="image" name="image" class="p-2 border border-gray-400 rounded-md mb-4" style="width: 100%;" />
+
     <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md">
       Upload
     </button>
@@ -21,11 +25,11 @@
 </div>
 <!-- Change Users Name -->
 <h1 class="text-2xl font-bold my-4">Change Name:</h1>
-<div class="account-containers bg-white p-4 rounded-lg shadow-lg">
+<div class="account-containers p-4 rounded-lg shadow-lg">
   <form method="post" action="/api/account/name" class="flex flex-col items-center">
     <div class="flex justify-center">
       <label for="new_name" class="mb-2 font-medium text-lg mr-2 text-center"></label>
-      <input type="text" id="name" name="name" class="mb-4 p-2 border border-gray-400 rounded-md" />
+      <input type="text" id="name" name="name" class="mb-4 p-2 border border-gray-400 rounded-md" style="width: 100%;"/>
     </div>
     <button type="submit" id="update-user" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md">
       Update
