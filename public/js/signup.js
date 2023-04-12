@@ -4,8 +4,7 @@ const signupFormHandler = async function (event) {
   const username = document.querySelector('#name-signup').value.trim();
   const password = document.querySelector('#password-signup').value.trim();
   const email = document.querySelector('#email-signup').value.trim();
-  console.log(email);
-  console.log(password);
+
   const response = await fetch('/api/user', {
     method: 'POST',
     body: JSON.stringify({
@@ -19,7 +18,7 @@ const signupFormHandler = async function (event) {
   if (response.ok) {
     //when signed up, user will be directed to cart
     //Possibly directed to homepage, since cart will be empty for new users
-    document.location.replace('/carts');
+    document.location.replace('/');
   } else {
     alert('Failed to sign up');
   }
