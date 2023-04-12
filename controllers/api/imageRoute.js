@@ -48,6 +48,7 @@ router.post('/upload', upload.single('image'), async (req, res) => {
     const newPath = `${path}.${mimetype.split('/')[1]}`;
     fs.renameSync(path, newPath);
 
+    req.session.imagePath = 
     //Refreshes page so the user can see their new profile pic
     res.reload('/account');
   } catch (err) {
