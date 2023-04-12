@@ -18,12 +18,12 @@ router.get('/', async (req, res) => {
         const script = {
             "script": "./js/index.js",
         };
-        console.log(req.session.loggedIn)
+       
         res.render('homepage',{
            products,
           loggedIn: req.session.loggedIn,
           imagePath: req.session.imagePath,
-
+           loggedIn: req.session.loggedIn
         });
     } catch(err) {
         res.status(500);
@@ -65,7 +65,7 @@ router.get('/signup', async (req, res) => {
   }
 });
 
-router.get('/carts', async (req, res) => {
+router.get('/carts', withAuth, async (req, res) => {
     try {
         const carts = await Cart.findAll();
         let totalPrice = 0;
@@ -80,7 +80,7 @@ router.get('/carts', async (req, res) => {
             loggedIn: req.session.loggedIn,
             cartItems: cartItems,
             totalPrice: totalPrice,
-            "script": "/js/cartDisplay.js"
+            "script": "/js/cartDisplay.js",
         });
     } catch(err) {
         res.status(500)
