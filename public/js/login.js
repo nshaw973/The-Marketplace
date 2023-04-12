@@ -15,7 +15,7 @@ const loginFormHandler = async function(event) {
 
   if (response.ok) {
     //when logged in, user will be directed to their cart
-    document.location.replace('/carts');
+    document.location.replace('/account');
   } else {
     alert('Failed to login');
   }
