@@ -3227,16 +3227,8 @@ html {
   right: 0px;
 }
 
-.top-0 {
-  top: 0px;
-}
-
 .top-20 {
   top: 5rem;
-}
-
-.z-10 {
-  z-index: 10;
 }
 
 .m-0 {
@@ -3524,11 +3516,6 @@ html {
 .bg-base-200 {
   --tw-bg-opacity: 1;
   background-color: hsl(var(--b2, var(--b1)) / var(--tw-bg-opacity));
-}
-
-.bg-blue {
-  --tw-bg-opacity: 1;
-  background-color: rgb(31 182 255 / var(--tw-bg-opacity));
 }
 
 .bg-yellow {

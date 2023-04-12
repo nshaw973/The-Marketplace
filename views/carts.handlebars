@@ -1,34 +1,18 @@
 
-<<<<<<< HEAD
-        <div class="bg-blue">
-            
-            <button onclick="checkoutHandler(false)" class="flex justify-center">Open Modal</button>
-            
-        </div>
-        <div class="w-full h-full bg-black dark:bg-gray-900 bg-opacity-90 top-0 overflow-y-auto overflow-x-hidden sticky-0" id="chec-div">
-            <div class="w-full absolute z-10 right-0 h-full overflow-x-hidden transform translate-x-0 transition ease-in-out duration-700" id="checkout">
-                <div class="flex items-end lg:flex-row flex-col justify-end" id="cart">
-                    <div class="lg:w-1/2 md:w-8/12 w-full lg:px-8 lg:py-14 md:px-6 px-4 md:py-8 py-4 bg-white dark:bg-gray-800 overflow-y-hidden overflow-x-hidden lg:h-screen h-auto" id="scroll">
-                        <div class="flex items-center text-gray-500 hover:text-gray-600 dark:text-white cursor-pointer" onclick="checkoutHandler(false)">
-                            <img class="dark:hidden" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/shopping-cart-1-svg1.svg" alt="previous"/>
-                             <img class="dark:block hidden" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/shopping-cart-1-svg1dark.svg" alt="previous"/>
-                            <p class="text-sm pl-2 leading-none dark:hover:text-gray-200 pt-300px">Back</p>
-=======
         <div class="flex items-center absolute top-25 justify-center py-8">
             
             <button class="py-2 px-10 rounded bg-indigo-600 hover:bg-indigo-700 text-white">Open Modal</button>
             
         </div>
-        <div class="w-full absolute top-20 h-full bg-black dark:bg-gray-900 bg-opacity-90  overflow-y-auto overflow-x-hidden sticky-0" id="chec-div">
-            <div class="w-full absolute right-0 h-full overflow-x-hidden transform translate-x-0 transition ease-in-out duration-700" id="checkout">
+        <div class="w-full h-full bg-black dark:bg-gray-900 bg-opacity-90 top-0 overflow-y-auto overflow-x-hidden fixed sticky-0" id="chec-div">
+            <div class="w-full absolute z-10 right-0 h-full overflow-x-hidden transform translate-x-0 transition ease-in-out duration-700" id="checkout">
                 <div class=" flex items-end lg:flex-row flex-col justify-end" id="cart">
                     <div class="lg:w-1/2 md:w-8/12 w-full lg:px-8 lg:py-14 md:px-6 px-4 md:py-8 py-4 bg-white dark:bg-gray-800 overflow-y-hidden overflow-x-hidden lg:h-screen h-auto" >
                         <div class="flex items-center text-gray-500 hover:text-gray-600 dark:text-white cursor-pointer" onclick="checkoutHandler(false)">
                             <img class="dark:hidden" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/shopping-cart-1-svg1.svg" alt="previous"/>
                              <img class="dark:block hidden" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/shopping-cart-1-svg1dark.svg" alt="previous"/>
-                            <p class="text-sm pl-2 leading-none dark:hover:text-gray-200">Back</p>
+                            <a href=".." class="text-sm pl-2 leading-none dark:hover:text-gray-200 pt-300px">Continue Shopping</a>
                             <button onclick="clearCart()" class="py-2 px-10 rounded bg-indigo-600 hover:bg-indigo-700 text-white">clear cart</button>
->>>>>>> 03534deeae6f31fa2b3d844bb2142f8d7eb46426
                         </div>
                         <p class="lg:text-4xl text-3xl font-black leading-10 text-gray-800 dark:text-white pt-3">Cart</p>
                         {{#each cartItems as |cart|}}
@@ -52,7 +36,7 @@
                                 <div class="flex items-center justify-between pt-5">
                                     <div class="flex itemms-center">
                                         
-                                        <button class="text-xs leading-3 underline text-red-500 pl-5 cursor-pointer cart-remove" data-id={{cart.id}}>Remove</button>
+                                        <button class="text-xs leading-3 underline text-red pl-5 cursor-pointer cart-remove" data-id={{cart.id}}>Remove</button>
                                     </div>
                                     <p class="text-base font-black leading-none text-gray-800 dark:text-white cartPriceLike">${{cart.price}}</p>
                                 </div>

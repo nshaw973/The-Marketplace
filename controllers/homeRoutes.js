@@ -20,8 +20,7 @@ router.get('/', async (req, res) => {
         };
         console.log(req.session.loggedIn)
         res.render('homepage',{
-            products
-           products,
+            products,
           loggedIn: req.session.loggedIn,
           imagePath: req.session.imagePath,
 
