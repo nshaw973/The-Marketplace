@@ -26,10 +26,6 @@
             </div>
           </label>
           <div class='flex justify-evenly items-center w-150 px-2 md:w-96'>
-            <a
-              class='text-xl font-semibold invisible md:visible w-0 md:w-auto lg:text-2xl'
-              href='/orders'
-            >Orders</a>
             <div
               class='btn btn-ghost btn-circle md:justify-start w-10 mx-3'
               onclick="window.location.href='/carts'"
@@ -48,10 +44,6 @@
                   class='mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-32'
                 >
                   <li><a class='text-xl md:text-2xl' href='/carts'>Cart</a></li>
-                  <li><a
-                      class='text-xl md:text-2xl'
-                      href='/orders'
-                    >Orders</a></li>
                   <li><a
                       class='text-xl md:text-2xl'
                       href='/account'
@@ -144,12 +136,11 @@
           by Team 3</p>
       </div>
     </footer>
-    {{! Add more .js files for either login, logout, etc }}
-    <script
-      src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js'
-    ></script>
-    <script src='/js/logout.js'></script>
-    <script src='{{script}}'></script>
-    <script src='/js/navbar.js'></script>
-  </body>
+    {{!-- Add more .js files for either login, logout, etc --}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="{{script}}"></script>
+    <script src="/js/navbar.js"></script>
+    <script src="/js/logout.js"></script>
+    
+</body>
 </html>
