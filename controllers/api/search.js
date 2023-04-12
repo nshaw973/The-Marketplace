@@ -11,13 +11,11 @@ search.get('/', async (req, res) => {
             const data = await pollDatabase(req.query.term);
             if(data.products.length === 0){
                 res.render('search',{
-                    "searchScript": "/js/search.js",
                     "searchResults": data.products,
                     "resultAvailiable": false
                 });
             } else {
                 res.render('search',{
-                    "searchScript": "/js/search.js",
                     "searchResults": data.products,
                     "resultAvailable": true
                 });
