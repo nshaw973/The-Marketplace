@@ -9,7 +9,7 @@ const stripe = require('stripe')(
 );
 //Express
 
-router.get('/', async (req, res) => {
+router.get('/',  async (req, res) => {
     try {
         const productData = await Product.findAll();
         const products = productData.map((products)=>{
@@ -18,7 +18,7 @@ router.get('/', async (req, res) => {
         const script = {
             "script": "./js/index.js",
         };
-       
+
         res.render('homepage',{
             products,
           loggedIn: req.session.loggedIn,
@@ -38,10 +38,13 @@ router.post('/',async(req,res)=>{
             return item.get({plain:true});
         })
 
-        console.log(product);
         const [{product_name,price,thumbnail,stock}] = product;
+
        console.log(product_name);
+        await Cart.create({product_name: product_name,price:price,thumbnail:thumbnail,stock:stock, }); 
+
         await Cart.create({product_name: product_name,price:price,thumbnail:thumbnail,stock:stock}); 
+
        
     } catch (error) {
         console.log(error);
@@ -73,7 +76,6 @@ router.get('/carts', withAuth, async (req, res) => {
             totalPrice = totalPrice + parseInt(cart.price);
             return cart.get({plain:true})
          });
-         console.log(cartItems);
         //res.render('carts',{cartItems});
         res.render('carts', {
             imagePath: req.session.imagePath,
@@ -98,40 +100,37 @@ router.delete('/carts',async(req,res)=>{
     
 })
 router.delete('/carts/:id',async(req,res) => {
-    // console.log("Inside delete route");
     let myid = req.params.id;
-    // console.log(id);
     
     const remove = await Cart.destroy({where:{id:myid}});
 
     
 })
 
-router.post('/purchase',async (req,res)=>{
+// router.post('/purchase',async (req,res)=>{
     
-    let total = 0;
-    req.body.items.forEach(async function(item){
-        const cartTotal = await Cart.findAll({where:{id:item.id}});
-        const serialize = cartTotal.map((item)=> item.get({plain:true}));
-        const [{price}] = serialize;
-        total += price *item.quantity;
-    })
-    stripe.charges.create({
-        amount:total,
-        source: req.body.stripeTokenId,
-        currency: 'usd'
-    }).then(function(){
-        console.log("charges Succesfully")
-    }).catch(function(){
-        console.log('charges fail');
-    })
-})
+//     let total = 0;
+//     req.body.items.forEach(async function(item){
+//         const cartTotal = await Cart.findAll({where:{id:item.id}});
+//         const serialize = cartTotal.map((item)=> item.get({plain:true}));
+//         const [{price}] = serialize;
+//         total += price *item.quantity;
+//     })
+//     stripe.charges.create({
+//         amount:total,
+//         source: req.body.stripeTokenId,
+//         currency: 'usd'
+//     }).then(function(){
+//         console.log("charges Succesfully")
+//     }).catch(function(){
+//         console.log('charges fail');
+//     })
+// })
 
 router.post('/create-checkout-session', async (req, res) => {
 
     const items = await Cart.findAll();
 
-    console.log(items);
     const serialize = items.map((item)=> item.get({plain:true}));
    const line_items = serialize.map((item)=>{
 
@@ -158,8 +157,8 @@ router.post('/create-checkout-session', async (req, res) => {
         line_items,
       
       mode: 'payment',
-      success_url: 'http://localhost:3001/success',
-      cancel_url: 'http://localhost:3001/carts',
+      success_url: 'https://group-3-marketplace.herokuapp.com/success',
+      cancel_url: 'https://group-3-marketplace.herokuapp.com/carts',
     });
   
     res.redirect(303, session.url);

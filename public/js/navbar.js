@@ -1,4 +1,4 @@
-console.log("navbar script");
+
 const categories = [
                     "Smartphones",
                     "Laptops",

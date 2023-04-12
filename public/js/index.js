@@ -1,6 +1,5 @@
 
 
 
-console.log("index script");
 
 

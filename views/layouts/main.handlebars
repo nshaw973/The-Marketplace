@@ -33,6 +33,7 @@
               onclick="window.location.href='/carts'"
             >
               <img src='https://group-3-marketplace.herokuapp.com/images/logo-cart.png' />
+
             </div>
             {{#if loggedIn}}
               <div class='dropdown dropdown-end'>
@@ -138,11 +139,14 @@
           by Team 3</p>
       </div>
     </footer>
-    {{!-- Add more .js files for either login, logout, etc --}}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    <script src="{{script}}"></script>
-    <script src="/js/navbar.js"></script>
-    <script src="/js/logout.js"></script>
-    
-</body>
+    {{! Add more .js files for either login, logout, etc }}
+    <script
+      src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js'
+    ></script>
+    <script src='/js/logout.js'></script>
+    <script src='{{script}}'></script>
+    <script src='/js/navbar.js'></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+  </body>
 </html>
