@@ -20,7 +20,7 @@ router.get('/', async (req, res) => {
         };
        
         res.render('homepage',{
-           products,
+            products,
           loggedIn: req.session.loggedIn,
           imagePath: req.session.imagePath,
            loggedIn: req.session.loggedIn
@@ -80,7 +80,9 @@ router.get('/carts', withAuth, async (req, res) => {
             loggedIn: req.session.loggedIn,
             cartItems: cartItems,
             totalPrice: totalPrice,
-            "script": "/js/cartDisplay.js",
+            
+             "script": "/js/cartDisplay.js"
+
         });
     } catch(err) {
         res.status(500)

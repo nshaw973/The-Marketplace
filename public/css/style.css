@@ -3219,6 +3219,10 @@ html {
   visibility: hidden;
 }
 
+.fixed {
+  position: fixed;
+}
+
 .absolute {
   position: absolute;
 }
@@ -3227,8 +3231,12 @@ html {
   right: 0px;
 }
 
-.top-20 {
-  top: 5rem;
+.top-0 {
+  top: 0px;
+}
+
+.z-10 {
+  z-index: 10;
 }
 
 .m-0 {
@@ -3254,14 +3262,26 @@ html {
   margin-bottom: 0.5rem;
 }
 
+.my-4 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
 .my-6 {
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
 }
 
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
 
 .mb-4 {
   margin-bottom: 1rem;
+}
+
+.mb-8 {
+  margin-bottom: 2rem;
 }
 
 .mr-6 {
@@ -3274,6 +3294,10 @@ html {
 
 .mt-3 {
   margin-top: 0.75rem;
+}
+
+.block {
+  display: block;
 }
 
 .flex {
@@ -3292,12 +3316,12 @@ html {
   height: 0px;
 }
 
-.h-52 {
-  height: 13rem;
+.h-16 {
+  height: 4rem;
 }
 
-.h-72 {
-  height: 18rem;
+.h-52 {
+  height: 13rem;
 }
 
 .h-auto {
@@ -3454,12 +3478,24 @@ html {
   overflow-y: hidden;
 }
 
+.overflow-y-scroll {
+  overflow-y: scroll;
+}
+
+.scroll-smooth {
+  scroll-behavior: smooth;
+}
+
 .rounded {
   border-radius: 0.25rem;
 }
 
 .rounded-full {
   border-radius: 9999px;
+}
+
+.rounded-lg {
+  border-radius: 0.5rem;
 }
 
 .rounded-r-md {
@@ -3516,10 +3552,6 @@ html {
   --tw-gradient-to-position:  ;
 }
 
-.fill-current {
-  fill: currentColor;
-}
-
 .object-contain {
   -o-object-fit: contain;
      object-fit: contain;
@@ -3547,8 +3579,12 @@ html {
   padding: 0.5rem;
 }
 
-.p-3 {
-  padding: 0.75rem;
+.p-6 {
+  padding: 1.5rem;
+}
+
+.p-8 {
+  padding: 2rem;
 }
 
 .px-1 {
@@ -3589,6 +3625,11 @@ html {
 .py-2 {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
+}
+
+.py-3 {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
 }
 
 .py-4 {
@@ -3679,6 +3720,11 @@ html {
   line-height: 1.5rem;
 }
 
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
 .text-sm {
   font-size: 0.875rem;
   line-height: 1.25rem;
@@ -3700,6 +3746,10 @@ html {
 
 .font-bold {
   font-weight: 700;
+}
+
+.font-medium {
+  font-weight: 500;
 }
 
 .font-semibold {
@@ -3749,6 +3799,11 @@ html {
   color: rgb(39 52 68 / var(--tw-text-opacity));
 }
 
+.text-graygreen {
+  --tw-text-opacity: 1;
+  color: rgb(128 157 127 / var(--tw-text-opacity));
+}
+
 .underline {
   text-decoration-line: underline;
 }
@@ -3756,6 +3811,12 @@ html {
 .shadow {
   --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.shadow-lg {
+  --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
@@ -4004,7 +4065,6 @@ html {
     font-size: 2.25rem;
     line-height: 2.5rem;
   }
-}
 
 /* Custom CSS */
 .profile-image {
