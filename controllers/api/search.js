@@ -21,6 +21,8 @@ search.get('/', async (req, res) => {
                     data[i].listPrice = Math.floor(data[i].price/(1-(data[i].discountPercentage/100)));
                 }
                 res.render('search',{
+                    imagePath: req.session.imagePath,
+                    loggedIn: req.session.loggedIn,
                     "products": data,
                     "resultAvailable": true,
                     "script": "/js/cartscript.js",
