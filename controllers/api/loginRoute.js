@@ -47,9 +47,12 @@ router.post('/login', async (req, res) => {
     }
 
     if (user.profile_image === null) {
-      imagePath = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'
+      imagePath =
+        'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';
     } else {
-      imagePath = `uploads/${user.profile_image.filename}.${user.profile_image.mimetype.split('/')[1]}`;
+      imagePath = `uploads/${user.profile_image.filename}.${
+        user.profile_image.mimetype.split('/')[1]
+      }`;
     }
 
     req.session.save(() => {
@@ -72,7 +75,7 @@ router.post('/logout', (req, res) => {
   if (req.session.loggedIn) {
     req.session.destroy(() => {
       res.status(204).end();
-    })
+    });
   } else {
     res.status(404).end();
   }

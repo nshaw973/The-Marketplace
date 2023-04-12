@@ -1,4 +1,4 @@
-const loginFormHandler = async function(event) {
+const loginFormHandler = async function (event) {
   event.preventDefault();
 
   const email = document.querySelector('#email-login');
