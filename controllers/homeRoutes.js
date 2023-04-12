@@ -105,25 +105,25 @@ router.delete('/carts/:id',async(req,res) => {
     
 })
 
-router.post('/purchase',async (req,res)=>{
+// router.post('/purchase',async (req,res)=>{
     
-    let total = 0;
-    req.body.items.forEach(async function(item){
-        const cartTotal = await Cart.findAll({where:{id:item.id}});
-        const serialize = cartTotal.map((item)=> item.get({plain:true}));
-        const [{price}] = serialize;
-        total += price *item.quantity;
-    })
-    stripe.charges.create({
-        amount:total,
-        source: req.body.stripeTokenId,
-        currency: 'usd'
-    }).then(function(){
-        console.log("charges Succesfully")
-    }).catch(function(){
-        console.log('charges fail');
-    })
-})
+//     let total = 0;
+//     req.body.items.forEach(async function(item){
+//         const cartTotal = await Cart.findAll({where:{id:item.id}});
+//         const serialize = cartTotal.map((item)=> item.get({plain:true}));
+//         const [{price}] = serialize;
+//         total += price *item.quantity;
+//     })
+//     stripe.charges.create({
+//         amount:total,
+//         source: req.body.stripeTokenId,
+//         currency: 'usd'
+//     }).then(function(){
+//         console.log("charges Succesfully")
+//     }).catch(function(){
+//         console.log('charges fail');
+//     })
+// })
 
 router.post('/create-checkout-session', async (req, res) => {
 
@@ -173,32 +173,32 @@ router.get('/success', async (req, res) => {
 
 
 /* Test Route for account dashboard */
-router.get('/account', withAuth, async (req, res) => {
-  try {
-    const userData = await User.findByPk(req.session.userId, {
-      attributes: { exclude: ['password'] },
-      include: [{ model: Profileimage }]
-    });
+// router.get('/account', withAuth, async (req, res) => {
+//   try {
+//     const userData = await User.findByPk(req.session.userId, {
+//       attributes: { exclude: ['password'] },
+//       include: [{ model: Profileimage }]
+//     });
 
-    let imagePath;
-    const user = userData.get({ plain: true });
-    if (user.profile_image === null) {
-      imagePath = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'
-    } else {
-      imagePath = `uploads/${user.profile_image.filename}.${user.profile_image.mimetype.split('/')[1]}`;
-    }
+//     let imagePath;
+//     const user = userData.get({ plain: true });
+//     if (user.profile_image === null) {
+//       imagePath = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'
+//     } else {
+//       imagePath = `uploads/${user.profile_image.filename}.${user.profile_image.mimetype.split('/')[1]}`;
+//     }
 
-    res.render('account', {
-      ...user,
-      imagePath,
-      has_pic: req.session.has_pic,
-      loggedIn: req.session.loggedIn,
-      user_id: req.session.userId,
-    });
-  } catch (err) {
-    res.status(500);
-  }
-});
+//     res.render('account', {
+//       ...user,
+//       imagePath,
+//       has_pic: req.session.has_pic,
+//       loggedIn: req.session.loggedIn,
+//       user_id: req.session.userId,
+//     });
+//   } catch (err) {
+//     res.status(500);
+//   }
+// });
 
 //  router.get('*', (req, res) => {
 //     try {
