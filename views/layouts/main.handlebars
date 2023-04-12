@@ -85,7 +85,7 @@
             >Categories</label>
             <ul
               tabindex='0'
-              class='dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 h-52 overflow-y-scroll'
+              class='dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 h-52 md:w-60 md:h-max overflow-y-scroll'
               id='category-list'
             >
 
@@ -118,7 +118,7 @@
     {{{body}}}
 
     <footer
-      class='footer footer-center p-10 bg-base-200 text-base-content rounded'
+      class='footer footer-center p-10 mt-5 bg-base-200 text-base-content rounded'
     >
       <div class='grid grid-flow-col gap-4'>
         <a class='link link-hover font-semibold text-lg' href='/'>Home</a>
@@ -131,8 +131,8 @@
         <a class='link link-hover font-semibold text-lg' href='/carts'>Cart</a>
         <a
           class='link link-hover font-semibold text-lg'
-          href='/orders'
-        >Orders</a>
+          href='/api/search/?term=all'
+        >Search Products</a>
       </div>
       <div>
         <p class='font-semibold text-lg'>Copyright © 2023 - All right reserved
@@ -146,7 +146,7 @@
     <script src='/js/logout.js'></script>
     <script src='{{script}}'></script>
     <script src='/js/navbar.js'></script>
-    <script src="https://cdn.tailwindcss.com"></script>
+
 
   </body>
 </html>

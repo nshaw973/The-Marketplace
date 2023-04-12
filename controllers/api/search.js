@@ -8,16 +8,18 @@ const pollDatabase = require('../../utils/polling.js');
 search.get('/', async (req, res) => {
     try {
         if(req.query.term){
-            const data = await pollDatabase(req.query.term);
-            if(data.products.length === 0){
+            const data = await pollDatabase(req.query);
+            if(data.length === 0){
                 res.render('search',{
-                    "searchResults": data.products,
-                    "resultAvailiable": false
+                    "products": data,
+                    "resultAvailiable": false,
+                    "script": "/js/cartscript.js"
                 });
             } else {
                 res.render('search',{
-                    "searchResults": data.products,
-                    "resultAvailable": true
+                    "products": data,
+                    "resultAvailable": true,
+                    "script": "/js/cartscript.js"
                 });
             };
         } else{

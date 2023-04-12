@@ -15,15 +15,12 @@ router.get('/',  async (req, res) => {
         const products = productData.map((products)=>{
            return products.get({plain:true})
         });
-        const script = {
-            "script": "./js/index.js",
-        };
-
         res.render('homepage',{
             products,
           loggedIn: req.session.loggedIn,
           imagePath: req.session.imagePath,
-           loggedIn: req.session.loggedIn
+           loggedIn: req.session.loggedIn,
+           "script": "js/cartscript.js"
         });
     } catch(err) {
         res.status(500);
@@ -37,10 +34,9 @@ router.post('/',async(req,res)=>{
         const product = items.map((item)=>{
             return item.get({plain:true});
         })
-
+        
         const [{product_name,price,thumbnail,stock}] = product;
 
-       console.log(product_name);
         await Cart.create({product_name: product_name,price:price,thumbnail:thumbnail,stock:stock, }); 
 
         await Cart.create({product_name: product_name,price:price,thumbnail:thumbnail,stock:stock}); 
