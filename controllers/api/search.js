@@ -11,13 +11,15 @@ search.get('/', async (req, res) => {
             const data = await pollDatabase(req.query.term);
             if(data.products.length === 0){
                 res.render('search',{
-                    "searchResults": data.products,
-                    "resultAvailiable": false
+                    "products": data.products,
+                    "resultAvailiable": false,
+                    "script": "/js/cartscript.js"
                 });
             } else {
                 res.render('search',{
-                    "searchResults": data.products,
-                    "resultAvailable": true
+                    "products": data.products,
+                    "resultAvailable": true,
+                    "script": "/js/cartscript.js"
                 });
             };
         } else{
