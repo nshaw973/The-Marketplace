@@ -1,9 +1,12 @@
 const router = require('express').Router();
-const {User,Product,Cart} = require('../models');
+const { User, Product, Cart, Profileimage } = require('../models');
+const withAuth = require('../utils/auth');
+const fs = require('fs');
 // const stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY);
-const stripe = require('stripe')('sk_test_51MtMgCFsxalzdvcdc5tDP213h3qLVySCf3NesuAkpDIg81LwfRrIIRlcbIZhQCEqXn5GayrtWOSv4rPpOKcQ75pu00dDxC09LW');
+const stripe = require('stripe')(
+  'sk_test_51MtMgCFsxalzdvcdc5tDP213h3qLVySCf3NesuAkpDIg81LwfRrIIRlcbIZhQCEqXn5GayrtWOSv4rPpOKcQ75pu00dDxC09LW'
+);
 //Express
-
 
 router.get('/', async (req, res) => {
     try {
@@ -12,10 +15,10 @@ router.get('/', async (req, res) => {
         const products = productData.map((products)=>{
            return products.get({plain:true})
         });
-        // const script = {
-        //     "indexScript": "./js/index.js",
-        // };
-    
+        const script = {
+            "script": "./js/index.js",
+        };
+        console.log(products);
         res.render('homepage',{
            products
         });
@@ -47,7 +50,7 @@ router.post('/',async(req,res)=>{
 router.get('/login', async (req, res) => {
     try {
         res.render('login',{
-            "loginScript": "/js/login.js",
+            "script": "/js/login.js",
         });
     } catch(err) {
         res.status(500)
@@ -55,11 +58,11 @@ router.get('/login', async (req, res) => {
 });
 
 router.get('/signup', async (req, res) => {
-    try {
-        res.render('signup');
-    } catch(err) {
-        res.status(500)
-    }
+  try {
+    res.render('signup');
+  } catch (err) {
+    res.status(500);
+  }
 });
 
 router.get('/carts', async (req, res) => {
@@ -74,8 +77,9 @@ router.get('/carts', async (req, res) => {
         //res.render('carts',{cartItems});
         res.render('carts', {
             cartItems: cartItems,
-            totalPrice: totalPrice
-        })
+            totalPrice: totalPrice,
+            "script": "/js/cartDisplay.js"
+        });
     } catch(err) {
         res.status(500)
     }
@@ -166,13 +170,30 @@ router.get('/success', async (req, res) => {
 
 
 /* Test Route for account dashboard */
- router.get('/account', async (req, res) => {
-    try {
-        res.render('account');
-    } catch(err) {
-        res.status(500);
-    }
- })
+router.get('/account', withAuth, async (req, res) => {
+  try {
+    const userData = await User.findByPk(req.session.userId, {
+      attributes: { exclude: ['password'] },
+      include: [{ model: Profileimage }],
+    });
+
+    const user = userData.get({ plain: true });
+    console.log(user)
+
+    const imagePath = `${user.profile_image.filename}.${user.profile_image.mimetype.split('/')[1]}`;
+    console.log(imagePath)
+
+    res.render('account', {
+      ...user,
+      imagePath,
+      has_pic: req.session.has_pic,
+      loggedIn: req.session.loggedIn,
+      user_id: req.session.userId,
+    });
+  } catch (err) {
+    res.status(500);
+  }
+});
 
 //  router.get('*', (req, res) => {
 //     try {
@@ -182,4 +203,4 @@ router.get('/success', async (req, res) => {
 //     };
 // });
 
-module.exports = router
+module.exports = router;

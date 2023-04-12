@@ -16,6 +16,7 @@ router.post('/', async (req, res) => {
       req.session.userId = newUser.id;
       req.session.email = newUser.email;
       req.session.loggedIn = true;
+      req.session.has_pic = newUser.has_pic;
 
       res.json(newUser);
     });
