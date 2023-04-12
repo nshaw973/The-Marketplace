@@ -70,7 +70,7 @@ async function redirect(myParams){
     var paramString = $.param(myParams);
     // Navigate to the new URL with the query string appended
     // window.location.href = 'https://group-3-marketplace.herokuapp.com/api/search?' + paramString;
-    window.location.href = 'http://localhost:3001/api/search?' + paramString;
+    window.location.href = 'https://group-3-marketplace.herokuapp.com/api/search?' + paramString;
 
 };
 
