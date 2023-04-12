@@ -9,7 +9,7 @@ const stripe = require('stripe')(
 );
 //Express
 
-router.get('/', async (req, res) => {
+router.get('/',  async (req, res) => {
     try {
         const productData = await Product.findAll();
         const products = productData.map((products)=>{
@@ -41,7 +41,7 @@ router.post('/',async(req,res)=>{
         console.log(product);
         const [{product_name,price,thumbnail,stock}] = product;
        console.log(product_name);
-        await Cart.create({product_name: product_name,price:price,thumbnail:thumbnail,stock:stock}); 
+        await Cart.create({product_name: product_name,price:price,thumbnail:thumbnail,stock:stock, }); 
        
     } catch (error) {
         console.log(error);
@@ -173,32 +173,32 @@ router.get('/success', async (req, res) => {
 
 
 /* Test Route for account dashboard */
-// router.get('/account', withAuth, async (req, res) => {
-//   try {
-//     const userData = await User.findByPk(req.session.userId, {
-//       attributes: { exclude: ['password'] },
-//       include: [{ model: Profileimage }]
-//     });
+router.get('/account', withAuth, async (req, res) => {
+  try {
+    const userData = await User.findByPk(req.session.userId, {
+      attributes: { exclude: ['password'] },
+      include: [{ model: Profileimage }]
+    });
 
-//     let imagePath;
-//     const user = userData.get({ plain: true });
-//     if (user.profile_image === null) {
-//       imagePath = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'
-//     } else {
-//       imagePath = `uploads/${user.profile_image.filename}.${user.profile_image.mimetype.split('/')[1]}`;
-//     }
+    let imagePath;
+    const user = userData.get({ plain: true });
+    if (user.profile_image === null) {
+      imagePath = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'
+    } else {
+      imagePath = `uploads/${user.profile_image.filename}.${user.profile_image.mimetype.split('/')[1]}`;
+    }
 
-//     res.render('account', {
-//       ...user,
-//       imagePath,
-//       has_pic: req.session.has_pic,
-//       loggedIn: req.session.loggedIn,
-//       user_id: req.session.userId,
-//     });
-//   } catch (err) {
-//     res.status(500);
-//   }
-// });
+    res.render('account', {
+      ...user,
+      imagePath,
+      has_pic: req.session.has_pic,
+      loggedIn: req.session.loggedIn,
+      user_id: req.session.userId,
+    });
+  } catch (err) {
+    res.status(500);
+  }
+});
 
 //  router.get('*', (req, res) => {
 //     try {

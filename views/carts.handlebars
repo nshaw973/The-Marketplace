@@ -1,9 +1,5 @@
 
-        <div class="flex items-center absolute top-25 justify-center py-8">
-            
-            <button class="py-2 px-10 rounded bg-indigo-600 hover:bg-indigo-700 text-white">Open Modal</button>
-            
-        </div>
+       
         <div class="w-full absolute top-20 h-full bg-black dark:bg-gray-900 bg-opacity-90  overflow-y-auto overflow-x-hidden sticky-0" id="chec-div">
             <div class="w-full absolute right-0 h-full overflow-x-hidden transform translate-x-0 transition ease-in-out duration-700" id="checkout">
                 <div class=" flex items-end lg:flex-row flex-col justify-end" id="cart">
@@ -25,11 +21,7 @@
                                 <p class="text-xs leading-3 text-gray-800 dark:text-white md:pt-0 pt-4">RF293</p>
                                 <div class="flex items-center justify-between w-full pt-1">
                                     <p class="text-base font-black leading-none text-gray-800 dark:text-white cartProductName">{{cart.product_name}}</p>
-                                    <select aria-label="Select quantity" class="py-2 px-1 border border-gray-200 mr-6 focus:outline-none dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-white">
-                                        <option>01</option>
-                                        <option>02</option>
-                                        <option>03</option>
-                                    </select>
+                                    
                                 </div>
                                 
                         
@@ -52,7 +44,7 @@
                                 <p class="lg:text-4xl text-3xl font-black leading-9 text-gray-800 dark:text-white">Summary</p>
                                 <div class="flex items-center justify-between pt-16">
                                     <p class="text-base leading-none text-gray-800 dark:text-white">Subtotal</p>
-                                    <p class="text-base leading-none text-gray-800 dark:text-white">${{totalPrice}}</p>
+                                    <p class="text-base leading-none text-gray-800 dark:text-white subTotal">${{totalPrice}}</p>
                                 </div>
                                 <div class="flex items-center justify-between pt-5">
                                     <p class="text-base leading-none text-gray-800 dark:text-white">Shipping</p>
