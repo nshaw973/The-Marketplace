@@ -6,7 +6,6 @@ let stripeHandler = StripeCheckout.configure({
     key:"pk_test_51MtMgCFsxalzdvcduDxKPgBw2UEJsP3wscuq4tYhrIIutomjwtV80ZtbTmfPvCCULH3iQ9UUOLdpB2AWlFqX05E600c5YTZaCv",
     local: 'en',
     token: function(token){
-        console.log(token);
         var items = [];
         for(let i=0;i<cartItemsContainer.length;i++){
             var cartItem = cartItemsContainer[i];
@@ -74,7 +73,6 @@ const removeItem = ()=>{
     $(document).on("click", ".cart-remove", function(e){
         e.preventDefault();
         let id = $(this).attr("data-id");
-        console.log(id);
         const response = fetch(`/carts/${id}`, {
             method: 'DELETE'
           });
@@ -90,15 +88,8 @@ const payment = ()=>{
   })
 for(let i=0;i<cartItemsContainer.length;i++){
     cartItem = cartItemsContainer[i];
-    console.log(cartItem.dataset.id);
 }
   
 }
 
 removeItem();
-
-
-
-console.log("cartDisplay script");
-
-
