@@ -3297,10 +3297,6 @@ html {
   visibility: hidden;
 }
 
-.fixed {
-  position: fixed;
-}
-
 .absolute {
   position: absolute;
 }
@@ -3309,12 +3305,8 @@ html {
   right: 0px;
 }
 
-.top-0 {
-  top: 0px;
-}
-
-.z-10 {
-  z-index: 10;
+.top-20 {
+  top: 5rem;
 }
 
 .m-0 {
@@ -3338,6 +3330,17 @@ html {
   margin-left: auto;
   margin-right: auto;
 }
+
+.my-2 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.my-6 {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
 
 .mb-4 {
   margin-bottom: 1rem;
@@ -3375,13 +3378,21 @@ html {
   height: 0px;
 }
 
+
+.h-16 {
+  height: 4rem;
+}
+
+
 .h-52 {
   height: 13rem;
 }
 
+
 .h-72 {
   height: 18rem;
 }
+
 
 .h-auto {
   height: auto;
@@ -3391,12 +3402,20 @@ html {
   height: 100%;
 }
 
+.h-screen {
+  height: 100vh;
+}
+
 .w-0 {
   width: 0px;
 }
 
 .w-10 {
   width: 2.5rem;
+}
+
+.w-16 {
+  width: 4rem;
 }
 
 .w-2\/5 {
@@ -3636,8 +3655,13 @@ html {
   padding: 0.5rem;
 }
 
+
+.p-6 {
+  padding: 1.5rem;
+
 .p-3 {
   padding: 0.75rem;
+
 }
 
 .px-1 {
@@ -3648,6 +3672,11 @@ html {
 .px-10 {
   padding-left: 2.5rem;
   padding-right: 2.5rem;
+}
+
+.px-12 {
+  padding-left: 3rem;
+  padding-right: 3rem;
 }
 
 .px-2 {
@@ -3663,6 +3692,11 @@ html {
 .px-8 {
   padding-left: 2rem;
   padding-right: 2rem;
+}
+
+.py-10 {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
 }
 
 .py-2 {
@@ -3729,6 +3763,10 @@ html {
 
 .pt-5 {
   padding-top: 1.25rem;
+}
+
+.text-center {
+  text-align: center;
 }
 
 .text-right {
@@ -3971,6 +4009,11 @@ html {
     visibility: visible;
   }
 
+  .md\:mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   .md\:flex {
     display: flex;
   }
@@ -4114,6 +4157,9 @@ html {
     line-height: 2.5rem;
   }
 
+}
+
+
 /* Custom CSS */
 .profile-image {
   width: 300px;
@@ -4168,4 +4214,5 @@ html {
 
 .upload-pic form input {
 width: 60%;
+
 }
