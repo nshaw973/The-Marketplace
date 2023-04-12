@@ -102,9 +102,9 @@ router.delete('/carts/:id',async(req,res) => {
     let myid = req.params.id;
     // console.log(id);
     
-    const remove = await Cart.destroy({where:{id:myid}});
+   await Cart.destroy({where:{id:myid}});
 
-    
+    res.send("Item deleted successfully");
 })
 
 // router.post('/purchase',async (req,res)=>{

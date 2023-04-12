@@ -107,16 +107,20 @@ const checkoutHandler = () => {
     }
 };
 const removeItem = ()=>{
-    $(document).on("click", ".cart-remove", function(e){
+    $(document).on("click", ".cart-remove",  async function(e){
         e.preventDefault();
         let id = $(this).attr("data-id");
-        console.log(id);
-        const response = fetch(`/carts/${id}`, {
+       
+       try {
+         await fetch(`/carts/${id}`, {
             method: 'DELETE'
           });
-    
+          console.log("hello");
           document.location.replace("/carts");
-    
+       
+       } catch (error) {
+        console.error(error);
+       }
     })
 }
 
@@ -159,4 +163,4 @@ async function redirect(myParams){
     // Navigate to the new URL with the query string appended
     window.location.href = 'http://localhost:3001/api/search?' + paramString;
 }
-quantityUpdate();
+
