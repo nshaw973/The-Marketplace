@@ -158,8 +158,8 @@ router.post('/create-checkout-session', async (req, res) => {
         line_items,
       
       mode: 'payment',
-      success_url: 'http://localhost:3001/success',
-      cancel_url: 'http://localhost:3001/carts',
+      success_url: 'https://group-3-marketplace.herokuapp.com/success',
+      cancel_url: 'https://group-3-marketplace.herokuapp.com/carts',
     });
   
     res.redirect(303, session.url);
