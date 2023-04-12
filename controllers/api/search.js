@@ -11,6 +11,8 @@ search.get('/', async (req, res) => {
       const data = await pollDatabase(req.query);
       if (data.length === 0) {
         res.render('search', {
+          imagePath: req.session.imagePath,
+          loggedIn: req.session.loggedIn,
           products: data,
           resultAvailiable: false,
           script: '/js/cartscript.js',
@@ -31,7 +33,7 @@ search.get('/', async (req, res) => {
         });
       }
     } else {
-      res.render('homepage');
+      res.redirect('/');
     }
   } catch (err) {
     res.status(500);
