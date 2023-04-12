@@ -11,7 +11,7 @@ search.get('/', async (req, res) => {
       const data = await pollDatabase(req.query);
       if (data.length === 0) {
         res.render('search', {
-          imagePath: req.session.imagePath,
+          imagePath: `../${req.session.imagePath}`,
           loggedIn: req.session.loggedIn,
           products: data,
           resultAvailiable: false,
@@ -25,7 +25,7 @@ search.get('/', async (req, res) => {
           );
         }
         res.render('search', {
-          imagePath: req.session.imagePath,
+          imagePath: `../${req.session.imagePath}`,
           loggedIn: req.session.loggedIn,
           products: data,
           resultAvailable: true,
