@@ -81,7 +81,6 @@ router.get('/carts', withAuth, async (req, res) => {
             cartItems: cartItems,
             totalPrice: totalPrice,
             "script": "/js/cartDisplay.js",
-            loggedIn: req.session.loggedIn
         });
     } catch(err) {
         res.status(500)
