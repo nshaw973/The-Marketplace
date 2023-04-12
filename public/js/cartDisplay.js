@@ -42,7 +42,6 @@ let stripeHandler = StripeCheckout.configure({
     key:"pk_test_51MtMgCFsxalzdvcduDxKPgBw2UEJsP3wscuq4tYhrIIutomjwtV80ZtbTmfPvCCULH3iQ9UUOLdpB2AWlFqX05E600c5YTZaCv",
     local: 'en',
     token: function(token){
-        console.log(token);
         var items = [];
         for(let i=0;i<cartItemsContainer.length;i++){
             var cartItem = cartItemsContainer[i];
@@ -110,7 +109,6 @@ const removeItem = ()=>{
     $(document).on("click", ".cart-remove", function(e){
         e.preventDefault();
         let id = $(this).attr("data-id");
-        console.log(id);
         const response = fetch(`/carts/${id}`, {
             method: 'DELETE'
           });
@@ -126,37 +124,9 @@ const payment = ()=>{
   })
 for(let i=0;i<cartItemsContainer.length;i++){
     cartItem = cartItemsContainer[i];
-    console.log(cartItem.dataset.id);
 }
   
 }
 
 removeItem();
 
-
-
-console.log("cartDisplay script");
-
-const searchForm = $("#search-input");
-const searchButton = $("#search-button");
-
-searchButton.on('click',(event) => {
-    event.preventDefault();
-    console.log('Button clicked!');
-    var searchTerm = searchForm.val().trim().toLowerCase();
-    if(searchTerm === ''){
-        var myParams = { term: 'all'}; 
-        redirect(myParams); 
-    } else if( searchTerm !== '') {
-        var myParams = { term: searchTerm}; 
-        redirect(myParams); 
-    };
-});
-
-async function redirect(myParams){
-    // Convert the parameter object into a query string
-    var paramString = $.param(myParams);
-    // Navigate to the new URL with the query string appended
-    window.location.href = 'http://localhost:3001/api/search?' + paramString;
-}
-quantityUpdate();
