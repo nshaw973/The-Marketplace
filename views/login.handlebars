@@ -1,3 +1,4 @@
+{{!-- <div class="mx-auto max-w-md">
 <h2>Log In:</h2>
 <form action="/login" class="login-form">
   <label for="email">Email</label>
@@ -11,6 +12,29 @@
 </form>
 <h2>Not a member?</h2>
 <a href="/signup" class="bg-white border border-yellow rounded-r-md">Signup here</a>
+</div>
+--}}
+<section class="flex justify-center text-center">
+<div class="mx-auto max-w-md">
+  <h2 class="font-bold" style="margin-bottom: 0.7rem;">Log In:</h2>
+  <form action="/login" class="login-form" >
+    <ul class="mb-4">
+      <li>
+        <input type="text" name="email" placeholder="Email" id="email-login" style="margin-bottom: 0.5rem;"/>
+      </li>
+      <li>
+        <input type="password" name="password" placeholder="Password" id="password-login"/>
+      </li>
+    </ul>
+    <button
+      class='btn invisible w-0 m-0 p-0 h-0 sm:visible md:btn-md sm:m-1 sm:w-auto sm:h-auto sm:p-2 md:text-lg'
+      type="submit" id="submit"
+    >Submit</button>
+  </form>
+  <h2>Not a member?</h2>
+  <a href="/signup" class='btn invisible w-0 m-0 p-0 h-0 sm:visible md:btn-md sm:m-1 sm:w-auto sm:h-auto sm:p-2 md:text-lg'>Signup here</a>
+</div>
+</section>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="{{loginScript}}"></script>
 
