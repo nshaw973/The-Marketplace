@@ -106,15 +106,22 @@ const checkoutHandler = () => {
     }
 };
 const removeItem = ()=>{
-    $(document).on("click", ".cart-remove", function(e){
+    $(document).on("click", ".cart-remove",  async function(e){
         e.preventDefault();
         let id = $(this).attr("data-id");
-        const response = fetch(`/carts/${id}`, {
+
+       
+       try {
+         await fetch(`/carts/${id}`, {
+
             method: 'DELETE'
           });
-    
+          console.log("hello");
           document.location.replace("/carts");
-    
+       
+       } catch (error) {
+        console.error(error);
+       }
     })
 }
 
@@ -129,4 +136,33 @@ for(let i=0;i<cartItemsContainer.length;i++){
 }
 
 removeItem();
+
+
+
+
+console.log("cartDisplay script");
+
+const searchForm = $("#search-input");
+const searchButton = $("#search-button");
+
+searchButton.on('click',(event) => {
+    event.preventDefault();
+    console.log('Button clicked!');
+    var searchTerm = searchForm.val().trim().toLowerCase();
+    if(searchTerm === ''){
+        var myParams = { term: 'all'}; 
+        redirect(myParams); 
+    } else if( searchTerm !== '') {
+        var myParams = { term: searchTerm}; 
+        redirect(myParams); 
+    };
+});
+
+async function redirect(myParams){
+    // Convert the parameter object into a query string
+    var paramString = $.param(myParams);
+    // Navigate to the new URL with the query string appended
+    window.location.href = '/api/search?' + paramString;
+}
+
 
