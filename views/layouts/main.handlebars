@@ -6,14 +6,21 @@
     <title>Group 3 Marketplace!!!</title>
     {{! Reset file to reset browser custom styling }}
     {{! tailwind }}
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.5/dist/full.css" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href='https://cdn.jsdelivr.net/npm/daisyui@2.51.5/dist/full.css'
+      rel='stylesheet'
+      type='text/css'
+    />
+    <script src='https://cdn.tailwindcss.com'></script>
     <link rel='stylesheet' href='/css/reset.css' />
     <link rel='stylesheet' href='/css/style.css' />
   </head>
   <body>
     <header>
-      <nav class='navbar flex-wrap mb-3 md:mb-12 pb-6' style="border-bottom: 2px black solid; " >
+      <nav
+        class='navbar flex-wrap mb-3 md:mb-12 pb-6'
+        style='border-bottom: 2px black solid; '
+      >
         <div class='flex justify-between w-full py-2 px-2'>
           <label
             tabindex='0'
@@ -32,7 +39,9 @@
               class='btn btn-ghost btn-circle md:justify-start w-10 mx-3'
               onclick="window.location.href='/carts'"
             >
-              <img src='https://group-3-marketplace.herokuapp.com/images/logo-cart.png' />
+              <img
+                src='https://group-3-marketplace.herokuapp.com/images/logo-cart.png'
+              />
 
             </div>
             {{#if loggedIn}}
@@ -123,10 +132,10 @@
       <div class='grid grid-flow-col gap-4'>
         <a class='link link-hover font-semibold text-lg' href='/'>Home</a>
         {{#if loggedIn}}
-        <a
-          class='link link-hover font-semibold text-lg'
-          href='/account'
-        >Account</a>
+          <a
+            class='link link-hover font-semibold text-lg'
+            href='/account'
+          >Account</a>
         {{/if}}
         <a class='link link-hover font-semibold text-lg' href='/carts'>Cart</a>
         <a
@@ -146,7 +155,6 @@
     <script src='/js/logout.js'></script>
     <script src='{{script}}'></script>
     <script src='/js/navbar.js'></script>
-
 
   </body>
 </html>
