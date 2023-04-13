@@ -15,6 +15,7 @@ router.post('/', async (req, res) => {
       req.session.email = newUser.email;
       req.session.loggedIn = true;
       req.session.has_pic = newUser.has_pic;
+      req.session.imagePath = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';
 
       res.json(newUser);
     });
@@ -45,11 +46,16 @@ router.post('/login', async (req, res) => {
       res.status(400).json({ message: 'Password doesnt match!' });
       return;
     }
-
+    // Checks to see if the user in the db has a profile pic associated to them, if not then it gives them this generic profile pic.
+    let imagePath;
     if (user.profile_image === null) {
-      imagePath = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'
+      imagePath =
+        'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';
     } else {
-      imagePath = `uploads/${user.profile_image.filename}.${user.profile_image.mimetype.split('/')[1]}`;
+      //Changes the pathing in the 
+      imagePath = `uploads/${user.profile_image.filename}.${
+        user.profile_image.mimetype.split('/')[1]
+      }`;
     }
 
     req.session.save(() => {
@@ -72,7 +78,7 @@ router.post('/logout', (req, res) => {
   if (req.session.loggedIn) {
     req.session.destroy(() => {
       res.status(204).end();
-    })
+    });
   } else {
     res.status(404).end();
   }

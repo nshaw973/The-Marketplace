@@ -3976,14 +3976,12 @@ html {
   --tw-ring-offset-width: 2px;
 }
 
-@media (prefers-color-scheme: dark) {
-  .dark\:block {
-    display: block;
-  }
+:is(.dark .dark\:block) {
+  display: block;
+}
 
-  .dark\:hidden {
-    display: none;
-  }
+:is(.dark .dark\:hidden) {
+  display: none;
 }
 
 @media (min-width: 576px) {
@@ -4178,4 +4176,13 @@ html {
     font-size: 2.25rem;
     line-height: 2.5rem;
   }
+}
+
+/* Custom CSS for Account page */
+.profile-image {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  box-shadow: 0 0 1px #fff, 0 0 2px #fff, 0 0 3px #fff, 0 0 4px #00ff00, 0 0 7px #00ff00, 0 0 8px #00ff00, 0 0 10px #00ff00;
+  margin: 3%;
 }

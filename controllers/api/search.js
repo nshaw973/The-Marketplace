@@ -6,28 +6,49 @@ const pollDatabase = require('../../utils/polling.js');
 //client side js creates the complete url and fetches. Server decodes query and returns data from database
 //then server updates the search html to reflect the search results
 search.get('/', async (req, res) => {
-    try {
-        if(req.query.term){
-            const data = await pollDatabase(req.query.term);
-            if(data.products.length === 0){
-                res.render('search',{
-                    "searchResults": data.products,
-                    "resultAvailiable": false
-                });
-            } else {
-                res.render('search',{
-                    "searchResults": data.products,
-                    "resultAvailable": true
-                });
-            };
-        } else{
-            res.render('homepage');
-        };
-    } catch(err) {
-        res.status(500)
+  try {
+    if (req.query.term) {
+      const data = await pollDatabase(req.query);
+      if (data.length === 0) {
+        res.render('search', {
+          imagePath: `../${req.session.imagePath}`,
+          loggedIn: req.session.loggedIn,
+          products: data,
+          resultAvailiable: false,
+          script: '/js/cartscript.js',
+        });
+      } else {
+        for (let i = 0; i < data.length; i++) {
+          data[i].discountPercentage = Math.floor(data[i].discountPercentage);
+          data[i].listPrice = Math.floor(
+            data[i].price / (1 - data[i].discountPercentage / 100)
+          );
+        }
+
+        let imageSearchPath;
+        console.log(req.session.imagePath)
+        // Search has a weird issue going on where it needs a special path in order to get the profile image to load. 
+        // Looks for the uploads/ path and adds the new pathing for just search.
+        if(req.session.imagePath.includes('uploads/')) {
+          imageSearchPath = `../${req.session.imagePath}`;
+        } else {
+          imageSearchPath = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';
+        }
+                
+        res.render('search', {
+          imagePath: imageSearchPath,
+          loggedIn: req.session.loggedIn,
+          products: data,
+          resultAvailable: true,
+          script: '/js/cartscript.js',
+        });
+      }
+    } else {
+      res.redirect('/');
     }
+  } catch (err) {
+    res.status(500);
+  }
 });
-
-
 
 module.exports = search;
