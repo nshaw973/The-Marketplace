@@ -15,7 +15,8 @@ router.post('/', async (req, res) => {
       req.session.email = newUser.email;
       req.session.loggedIn = true;
       req.session.has_pic = newUser.has_pic;
-      req.session.imagePath = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';
+      req.session.imagePath =
+        'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';
 
       res.json(newUser);
     });
@@ -52,7 +53,7 @@ router.post('/login', async (req, res) => {
       imagePath =
         'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';
     } else {
-      //Changes the pathing in the 
+      //Changes the pathing in the
       imagePath = `uploads/${user.profile_image.filename}.${
         user.profile_image.mimetype.split('/')[1]
       }`;
