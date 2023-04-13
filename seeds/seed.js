@@ -17,7 +17,11 @@ const seedDatabase = async () => {
 
     // await seedCart();
     await seedComments();
-
+    const queryInterface = sequelize.getQueryInterface();
+    await queryInterface.addIndex('product',{
+      fields: ['product_name','description','category'],
+      type: 'FULLTEXT',
+    });
   process.exit(0);
 };
 
