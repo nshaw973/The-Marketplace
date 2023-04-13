@@ -16,4 +16,3 @@ if (logoutLink) {
   logoutLink.addEventListener('click', logout);
 };
 
-// document.querySelector('#logout-link').addEventListener('click', logout);
