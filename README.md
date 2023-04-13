@@ -64,11 +64,11 @@ These are some features we would like to add in the future for this application.
 
   - Github: [nshaw973](https://github.com/nshaw973)
 
-- Cristino
+- Cristino Castro
 
   - Github: [cristino4](https://github.com/cristino4)
 
-- Stephen
+- Stephen Batelaan
 
   - Github: [sbatelaan](https://github.com/sbatelaan)
 
@@ -76,7 +76,7 @@ These are some features we would like to add in the future for this application.
 
   - Github: [Tsukaden](https://github.com/Tsukaden)
 
-- David
+- David Yu
 
   - Github: [OppedRawen](https://github.com/OppedRawen)
 
