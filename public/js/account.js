@@ -17,7 +17,8 @@ async function redirect(myParams) {
   // Convert the parameter object into a query string
   var paramString = $.param(myParams);
   // Navigate to the new URL with the query string appended
-  window.location.href = 'https://group-3-marketplace.herokuapp.com/api/search?' + paramString;
+  window.location.href =
+    'https://group-3-marketplace.herokuapp.com/api/search?' + paramString;
 }
 
 // Updates User through the account page
@@ -44,4 +45,3 @@ const updateUser = async (event) => {
 
 const updateButton = document.querySelector('#update-user');
 updateButton.addEventListener('click', updateUser);
-
