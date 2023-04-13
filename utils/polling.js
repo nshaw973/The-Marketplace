@@ -10,10 +10,15 @@ async function pollDummyDatabase(query){
             const serialData = data.map((products)=>{
                 return products.get({plain:true})
              });
+             console.log(data[1])
             return serialData;
         } else if(query.term !== 'all'){
             const data = await sequelize.query(`SELECT * FROM product WHERE MATCH(product_name,description,category) 
                 AGAINST ('${query.term}' WITH QUERY EXPANSION);`, { type: QueryTypes.SELECT });
+            for (let i = 0; i < data.length; i++){
+                data[i].discountPercentage = data[i].discount_percentage;
+            }
+            console.log(data[1]);
             return data;
         }
     } else if (query.category !== 'all'){

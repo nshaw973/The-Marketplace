@@ -57,7 +57,7 @@ searchButton.on('click', (event) => {
   } else if (searchTerm !== '') {
     console.log(`search term not empty`);
     var myParams = {
-      term: 'all',
+      term: searchTerm,
       category: 'all',
     };
     redirect(myParams);
@@ -71,3 +71,5 @@ async function redirect(myParams) {
   // window.location.href = 'https://group-3-marketplace.herokuapp.com/api/search?' + paramString;
   window.location.href = '/api/search?' + paramString;
 }
+
+console.log('navbar script')
