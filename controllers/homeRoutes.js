@@ -76,7 +76,6 @@ router.get('/carts', withAuth, async (req, res) => {
     let totalPrice = 0;
     const cartItems = carts.map((cart) => {
       totalPrice = totalPrice + parseInt(cart.price);
-      count += 1;
       return cart.get({ plain: true });
     });
     //res.render('carts',{cartItems});
@@ -88,9 +87,6 @@ router.get('/carts', withAuth, async (req, res) => {
 
       script: '/js/cartDisplay.js',
     });
-    res.render('homepage', {
-      count: count,
-    })
   } catch (err) {
     res.status(500);
   }
