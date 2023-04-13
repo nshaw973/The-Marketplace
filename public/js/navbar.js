@@ -71,5 +71,3 @@ async function redirect(myParams) {
   // window.location.href = 'https://group-3-marketplace.herokuapp.com/api/search?' + paramString;
   window.location.href = '/api/search?' + paramString;
 }
-
-console.log('navbar script')
