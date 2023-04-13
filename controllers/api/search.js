@@ -24,8 +24,19 @@ search.get('/', async (req, res) => {
             data[i].price / (1 - data[i].discountPercentage / 100)
           );
         }
+
+        let imageSearchPath;
+        console.log(req.session.imagePath)
+        // Search has a weird issue going on where it needs a special path in order to get the profile image to load. 
+        // Looks for the uploads/ path and adds the new pathing for just search.
+        if(req.session.imagePath.includes('uploads/')) {
+          imageSearchPath = `../${req.session.imagePath}`;
+        } else {
+          imageSearchPath = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';
+        }
+                
         res.render('search', {
-          imagePath: `../${req.session.imagePath}`,
+          imagePath: imageSearchPath,
           loggedIn: req.session.loggedIn,
           products: data,
           resultAvailable: true,

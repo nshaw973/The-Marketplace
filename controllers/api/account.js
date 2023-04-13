@@ -1,6 +1,7 @@
 const { User } = require('../../models');
 const router = require('express').Router();
 
+// Updates Users name
 router.post('/:id', async (req, res) => {
   try {
     const userData = await User.update(
