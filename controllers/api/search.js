@@ -22,7 +22,6 @@ search.get('/', async (req, res) => {
 
     if (req.query.term) {
       const data = await pollDatabase(req.query);
-
       if (data.length === 0) {
         res.render('search', {
           imagePath: imageSearchPath,
@@ -31,20 +30,21 @@ search.get('/', async (req, res) => {
           resultAvailiable: false,
           script: '/js/cartscript.js',
         });
-      } else {
+      } else if(data.length !== 0){
         for (let i = 0; i < data.length; i++) {
           data[i].discountPercentage = Math.floor(data[i].discountPercentage);
           data[i].listPrice = Math.floor(
             data[i].price / (1 - data[i].discountPercentage / 100)
           );
         }
-
         res.render('search', {
           imagePath: imageSearchPath,
           loggedIn: req.session.loggedIn,
           products: data,
           resultAvailable: true,
           script: '/js/cartscript.js',
+          query: data[1].searchQuery,
+          numResults: data[1].numOfResults,
         });
       }
     } else {
