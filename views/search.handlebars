@@ -1,5 +1,10 @@
+
 {{#if resultAvailable}}
-  <div class='flex flex-wrap md:justify-center'>
+    <div class="flex flex-col text-center pb-3 text-md md:text-xl md:flex-row md:font-semibold md:justify-center">
+        <p class = "pb-3 md:px-12">Search Results for {{query}}</p>
+        <p class = "pb-3 md:px-12">Showing <strong>{{numResults}}</strong> results available</p>
+    </div>
+    <div class='flex flex-wrap md:justify-center'>
     {{#each products as |product|}}
       <div
         class='card card-side w-full md:w-2/3 h-72 md:h-64 m-2 bg-base-100 shadow-xl'
