@@ -10,6 +10,7 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY);
 const helpers = require('./utils/helpers');
 const multer = require('multer');
+const { goBack } = require('./utils/helpers')
 
 const fs = require('fs');
 
@@ -65,6 +66,10 @@ app.use((err, req, res, next) => {
     }
   }
   next();
+});
+// 404 Error
+app.use('*', (req, res) => {
+  res.status(404).send(goBack);
 });
 
 //listens
