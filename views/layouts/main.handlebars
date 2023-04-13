@@ -6,14 +6,21 @@
     <title>Group 3 Marketplace!!!</title>
     {{! Reset file to reset browser custom styling }}
     {{! tailwind }}
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.5/dist/full.css" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href='https://cdn.jsdelivr.net/npm/daisyui@2.51.5/dist/full.css'
+      rel='stylesheet'
+      type='text/css'
+    />
+    <script src='https://cdn.tailwindcss.com'></script>
     <link rel='stylesheet' href='/css/reset.css' />
     <link rel='stylesheet' href='/css/style.css' />
   </head>
   <body>
     <header>
-      <nav class='navbar flex-wrap mb-12 pb-6' style="border-bottom: 2px black solid; " >
+      <nav
+        class='navbar flex-wrap mb-3 md:mb-12 pb-6'
+        style='border-bottom: 2px black solid; '
+      >
         <div class='flex justify-between w-full py-2 px-2'>
           <label
             tabindex='0'
@@ -23,7 +30,7 @@
             <div class='w-40 md:w-6/12 lg:w-9/12'>
               <img
                 class='object-contain'
-                src='http://localhost:3001/images/name-only.png'
+                src='https://group-3-marketplace.herokuapp.com/images/name-only.png'
               />
             </div>
           </label>
@@ -32,7 +39,12 @@
               class='btn btn-ghost btn-circle md:justify-start w-10 mx-3'
               onclick="window.location.href='/carts'"
             >
-              <img src='http://localhost:3001/images/logo-cart.png' />
+             <span id="count" class="inline-flex items-center justify-center w-4 h-4 ml-2 text-xs font-semibold text-white bg-gray-500 rounded-full">
+            </span>
+              <img
+                src='https://group-3-marketplace.herokuapp.com/images/logo-cart.png'
+              />
+
             </div>
             {{#if loggedIn}}
               <div class='dropdown dropdown-end'>
@@ -74,7 +86,7 @@
               <div class='w-5'>
                 <img
                   class='object-contain'
-                  src='http://localhost:3001/images/down-arrow.png'
+                  src='https://group-3-marketplace.herokuapp.com/images/down-arrow.png'
                 />
               </div>
             </label>
@@ -84,7 +96,7 @@
             >Categories</label>
             <ul
               tabindex='0'
-              class='dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 h-52 overflow-y-scroll'
+              class='dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 h-52 md:w-60 md:h-max overflow-y-scroll'
               id='category-list'
             >
 
@@ -106,7 +118,7 @@
             <div class='w-5'>
               <img
                 class='object-contain'
-                src='http://localhost:3001/images/logo-search.png'
+                src='https://group-3-marketplace.herokuapp.com/images/logo-search.png'
               />
             </div>
           </label>
@@ -117,32 +129,34 @@
     {{{body}}}
 
     <footer
-      class='footer footer-center p-10 bg-base-200 text-base-content rounded'
+      class='footer footer-center p-10 mt-5 bg-base-200 text-base-content rounded'
     >
       <div class='grid grid-flow-col gap-4'>
         <a class='link link-hover font-semibold text-lg' href='/'>Home</a>
         {{#if loggedIn}}
-        <a
-          class='link link-hover font-semibold text-lg'
-          href='/account'
-        >Account</a>
+          <a
+            class='link link-hover font-semibold text-lg'
+            href='/account'
+          >Account</a>
         {{/if}}
         <a class='link link-hover font-semibold text-lg' href='/carts'>Cart</a>
         <a
           class='link link-hover font-semibold text-lg'
-          href='/orders'
-        >Orders</a>
+          href='/api/search?term=all&category=all'
+        >Search Products</a>
       </div>
       <div>
         <p class='font-semibold text-lg'>Copyright © 2023 - All right reserved
           by Team 3</p>
       </div>
     </footer>
-    {{!-- Add more .js files for either login, logout, etc --}}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    <script src="{{script}}"></script>
-    <script src="/js/navbar.js"></script>
-    <script src="/js/logout.js"></script>
-    
-</body>
+    {{! Add more .js files for either login, logout, etc }}
+    <script
+      src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js'
+    ></script>
+    <script src='/js/logout.js'></script>
+    <script src='{{script}}'></script>
+    <script src='/js/navbar.js'></script>
+
+  </body>
 </html>

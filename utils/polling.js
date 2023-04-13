@@ -1,13 +1,39 @@
+const { User, Product, Cart, Profileimage } = require('../models');
+const sequelize = require('../config/connection');
+const { QueryTypes } = require('sequelize');
+
 async function pollDummyDatabase(query){
-    if (query === 'all'){
-        const response = await fetch(`https://dummyjson.com/products?limit=0`);
-        const data = await response.json();
-        return data;
-    } else if(query !== 'all'){
-        const response = await fetch(`https://dummyjson.com/products/search?q=${query}`);
-        const data = await response.json();
-        return data;
-    };
+
+    if(query.category === 'all'){
+        if(query.term === 'all'){
+            const data = await Product.findAll();
+            const serialData = data.map((products)=>{
+                return products.get({plain:true})
+             });
+             console.log(data[1])
+            return serialData;
+        } else if(query.term !== 'all'){
+            const data = await sequelize.query(`SELECT * FROM product WHERE MATCH(product_name,description,category) 
+                AGAINST ('${query.term}' WITH QUERY EXPANSION);`, { type: QueryTypes.SELECT });
+            for (let i = 0; i < data.length; i++){
+                data[i].discountPercentage = data[i].discount_percentage;
+            }
+            console.log(data[1]);
+            return data;
+        }
+    } else if (query.category !== 'all'){
+        const data = await Product.findAll({
+            where:{
+                category: query.category
+            }
+        });
+        const serialData = data.map((products)=>{
+            return products.get({plain:true})
+         });
+        return serialData;
+    } else {
+        return {};
+    }
 };
 
 module.exports = pollDummyDatabase;

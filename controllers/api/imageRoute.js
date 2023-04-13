@@ -13,9 +13,13 @@ const upload = multer({
     if (allowedMimes.includes(file.mimetype)) {
       cb(null, true);
     } else {
-      cb(new Error('Invalid file type. Only JPEG, PNG and GIF files are allowed.'));
+      cb(
+        new Error(
+          'Invalid file type. Only JPEG, PNG and GIF files are allowed.'
+        )
+      );
     }
-  }
+  },
 });
 
 // Uploads the users profile pic
@@ -48,7 +52,7 @@ router.post('/upload', upload.single('image'), async (req, res) => {
     const newPath = `${path}.${mimetype.split('/')[1]}`;
     fs.renameSync(path, newPath);
 
-    req.session.imagePath = 
+    req.session.imagePath = newPath.replace(/\\/g, '/');
     //Refreshes page so the user can see their new profile pic
     res.reload('/account');
   } catch (err) {

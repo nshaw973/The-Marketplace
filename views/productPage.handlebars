@@ -1,0 +1,32 @@
+        {{#each products as |product|}}
+      <div class="md:flex items-start justify-center py-12 2xl:px-20 md:px-6 px-4">
+            <div class="xl:w-2/6 lg:w-2/5 w-80 md:block hidden">
+                      <img class = "w-full" src = "{{product.thumbnail}}" alt = "productPicture">
+            <div class="xl:w-2/5 md:w-1/2 lg:ml-8 md:ml-6 md:mt-0 mt-6">
+                <div class="border-b border-gray-200 pb-6">
+                    <h1 class="lg:text-2xl text-xl font-semibold lg:leading-6 leading-7 text-gray-800 dark:text-white mt-2">{{product_name}}</h1>
+                </div>
+                </div>
+                <button class = "btn btn-accent btn-sm carts addToCartButton" id = "add-to-cart"  data-id="{{product.id}}">Add to Cart</button>
+                <div>
+                    <p class="xl:pr-48 text-base lg:leading-tight leading-normal text-gray-600 dark:text-gray-300 mt-7">{{product.description}}</p>
+                </div>
+                <div>
+                    <div class="border-t border-b py-4 mt-7 border-gray-200">
+                    </div>
+                </div>
+                <div>
+                    <div class="border-b py-4 border-gray-200">
+                        <div data-menu class="flex justify-between items-center cursor-pointer">
+                            <p class="text-base leading-4 text-gray-800 dark:text-gray-300">Contact us</p>
+                            <button class="cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 rounded" role="button" aria-label="show or hide">
+                                <img class="transform dark:hidden" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/productDetail3-svg4.svg" alt="dropdown">
+                                <img class="transform hidden dark:block" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/productDetail3-svg4dark.svg" alt="dropdown">
+                            </button>
+                        </div>
+                        <div class="hidden pt-4 text-base leading-normal pr-12 mt-4 text-gray-600 dark:text-gray-300" id="sect">Team3@gmail.com</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/each}}
