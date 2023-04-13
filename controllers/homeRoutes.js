@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const { Console } = require('console');
 const { User, Product, Cart, Profileimage } = require('../models');
 const withAuth = require('../utils/auth');
 const fs = require('fs');
