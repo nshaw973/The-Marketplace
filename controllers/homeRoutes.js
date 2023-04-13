@@ -32,7 +32,43 @@ router.get('/', async (req, res) => {
   } catch (err) {
     res.status(500);
   }
+
+  router.post('/', async (req, res) => {
+    try {
+      const items = await Product.findAll({ where: { id: req.body.id } });
+      const product = items.map((item) => {
+        return item.get({ plain: true });
+      });
+  
+      const [{ product_name, price, thumbnail, stock }] = product;
+  
+      await Product.create({
+        product_name: product_name,
+        price: price,
+        thumbnail: thumbnail,
+        stock: stock,
+      });
+      res.render('productPage', {
+        products,
+        loggedIn: req.session.loggedIn,
+        imagePath: req.session.imagePath,
+        loggedIn: req.session.loggedIn,
+        script: 'js/proPage.js',
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  });
 });
+
+router.get('/productPage', async (req, res) => {
+  try {
+    res.render('productPage');
+  } catch (err) {
+    res.status(500);
+  }
+});
+
 router.post('/', async (req, res) => {
   try {
     const items = await Product.findAll({ where: { id: req.body.id } });

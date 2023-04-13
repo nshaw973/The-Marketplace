@@ -17,7 +17,7 @@
         </figure>
         <div class = "card-body p-3 w-3/5 md:w-2/3">
             <p class = "truncate text-md md:text-2xl font-semibold">
-                <label for="{{generateId 'name'}}">{{product.product_name}}</label>
+                <label for="{{generateId 'name'}}"><a href="/productPage" id="proPage">{{product.product_name}}</a></label>
                 <input class = "w-0 h-0" type="text" name="name" id="{{generateId 'name'}}">
             </p>
             <p class = "truncate text-xs md:text-lg">
