@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { User, Profileimage } = require('../../models');
+const withAuth = require('../../utils/auth');
 
 // SIGN UP
 
