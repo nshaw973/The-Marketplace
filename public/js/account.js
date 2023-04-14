@@ -43,5 +43,6 @@ const updateUser = async (event) => {
   }
 };
 
-const updateButton = document.querySelector('#update-user');
-updateButton.addEventListener('click', updateUser);
+const updateButton = document
+  .querySelector('#update-user')
+  .addEventListener('click', updateUser);
