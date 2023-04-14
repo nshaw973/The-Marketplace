@@ -17,7 +17,7 @@ module.exports = {
       padding:"1rem"
     },
     colors: {
-      'graygreen': '#809D7F',
+      graygreen: '#809D7F',
       'blue': '#1fb6ff',
       'purple': '#7e5bef',
       'pink': '#ff49db',
