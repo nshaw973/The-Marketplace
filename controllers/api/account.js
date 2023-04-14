@@ -11,7 +11,6 @@ router.post('/:id', withAuth, async (req, res) => {
     );
     const user = userData.get({ plain: true });
     res.status(200).json(user);
-    res.reload('/account');
   } catch (err) {
     res.redirect('/account');
   }

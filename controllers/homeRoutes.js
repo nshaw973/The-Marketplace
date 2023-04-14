@@ -49,12 +49,6 @@ router.post('/', async (req, res) => {
       stock: stock,
     });
 
-    await Cart.create({
-      product_name: product_name,
-      price: price,
-      thumbnail: thumbnail,
-      stock: stock,
-    });
   } catch (error) {
     console.log(error);
   }
