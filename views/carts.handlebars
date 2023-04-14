@@ -35,13 +35,9 @@
             href='..'
             class='text-sm pl-2 leading-none dark:hover:text-gray-200 pt-300px'
           >Continue Shopping</a>
-          <button
-            onclick='clearCart()'
-            class='py-2 px-10 rounded bg-indigo-600 hover:bg-indigo-700 text-white'
-          >clear cart</button>
         </div>
         <p
-          class='text-graygreen lg:text-4xl text-3xl font-black leading-10 text-gray-800 dark:text-white pt-3'
+          class='text-graygreen lg:text-4xl text-3xl font-black leading-10 pt-3'
         >Cart</p>
         {{#each cartItems as |cart|}}
           <div
@@ -67,14 +63,6 @@
                 <p
                   class='text-base font-black leading-none text-gray-800 dark:text-white cartProductName'
                 >{{cart.product_name}}</p>
-                <select
-                  aria-label='Select quantity'
-                  class='py-2 px-1 border border-gray-200 mr-6 focus:outline-none dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-white'
-                >
-                  <option>01</option>
-                  <option>02</option>
-                  <option>03</option>
-                </select>
               </div>
 
               <div class='flex items-center justify-between pt-5'>
@@ -101,7 +89,7 @@
         >
           <div>
             <p
-              class='text-graygreen lg:text-4xl text-3xl font-black leading-9 text-gray-800 dark:text-white'
+              class='text-graygreen lg:text-4xl text-3xl font-black leading-9'
             >Summary</p>
             <div class='flex items-center justify-between pt-16'>
               <p
